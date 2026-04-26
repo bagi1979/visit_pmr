@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi-Trail | Visit Pridnestrovie</title>
+
+    <meta name="description" content="Hi-Trail — индивидуальные авторские туры по Приднестровью. История без декораций, живая культура и уникальные маршруты от Игоря Боагия.">
+    <meta name="keywords" content="Приднестровье, туризм, Hi-Trail, туры ПМР, Бендерская крепость, путешествия, Игорь Боагий">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hi-trail.com/"> <meta property="og:title" content="Hi-Trail | Соберите своё путешествие в Приднестровье">
+    <meta property="og:description" content="Индивидуальные маршруты вне шаблонов. Открой для себя настоящий регион с местным проводником.">
+    <meta property="og:image" content="https://hi-trail.com/og-image.jpg"> <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hi-Trail | Visit Pridnestrovie">
+    <meta name="twitter:description" content="Авторские туры и живая история Приднестровья.">
+    <meta name="twitter:image" content="https://hi-trail.com/og-image.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <style>
+    /* 1. БАЗОВЫЕ СТИЛИ */
+    body { 
+        font-family: 'Montserrat', sans-serif; 
+        margin: 0; 
+        color: #333; 
+        line-height: 1.6; 
+        background-color: #fff; 
+        scroll-behavior: smooth; 
+        padding-top: 60px; 
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    
+   /* 2. НАВИГАЦИЯ */
+    .nav-bar { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        background: rgba(0,0,0,0.9); 
+        backdrop-filter: blur(10px); 
+        padding: 10px 0; 
+        z-index: 1000; 
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+    }
+    .nav-bar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo-nav { display: flex; align-items: center; text-decoration: none; }
+    .logo-nav img { height: 38px; width: auto; margin-right: 12px; }
+    .logo-nav span { color: white; font-weight: 800; font-size: 1.3rem; letter-spacing: 1px; }
+
+    /* Общие стили для кнопок языков и кнопки ПРАКТИЧЕСКИЕ СОВЕТЫ */
+   .lang-switch a, #nav-advice-btn, #nav-about-btn { 
+    color: white; 
+    text-decoration: none; 
+    margin-left: 12px; 
+    font-size: 0.8rem; 
+    font-weight: 700; 
+    border: 1px solid rgba(255,255,255,0.3); 
+    padding: 5px 15px; 
+    border-radius: 4px; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+    /* Единый эффект при наведении для всей панели */
+    .lang-switch a:hover, #nav-advice-btn:hover, #nav-about-btn:hover { 
+    background: #d35400; 
+    border-color: #d35400; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(211, 84, 0, 0.4);
+}
+
+    /* Эффект нажатия (микро-отклик) */
+    .lang-switch a:active, #nav-advice-btn:active {
+        transform: scale(0.95);
+    }
+    /* 3. HERO СЕКЦИЯ */
+    header { 
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('hero.jpg'); 
+        background-size: cover; 
+        background-position: center; 
+        height: 75vh; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        color: white; 
+        text-align: center;
+    }
+    .hero h1 { font-size: 3.2rem; margin-bottom: 20px; font-weight: 700; }
+    /* 3. HERO: ЭФФЕКТ ПЕЧАТНОЙ МАШИНКИ */
+.hero-sub-wrapper {
+    min-height: 1.6em; /* Резервируем место, чтобы контент не прыгал */
+    margin-bottom: 35px;
+}
+
+.hero-interactive {
+    font-size: 1.25rem;
+    color: white;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #d35400; /* Тот самый оранжевый курсор */
+    width: 0; /* Начальное состояние */
+    opacity: 0.9;
+    
+    /* Анимация: печатание (3.5 сек) и мигание курсора */
+    animation: 
+        typing 3.5s steps(55, end) forwards,
+        blink-caret 0.75s step-end infinite;
+    animation-delay: 1s; /* Начинаем через секунду после загрузки заголовка */
+}
+
+/* Механика "печатания" через изменение ширины */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* Механика мигания курсора */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #d35400 }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .hero-interactive {
+        white-space: normal; /* На телефонах разрешаем перенос строки */
+        width: auto;
+        border-right: none; /* Убираем курсор, чтобы не ломать верстку */
+        opacity: 0;
+        animation: fadeUpReveal 1s ease-out forwards;
+        animation-delay: 0.5s;
+    }
+}
+    .btn { background: #d35400; color: white; padding: 16px 40px; text-decoration: none; border-radius: 6px; font-weight: 600; transition: 0.3s ease; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    .btn:hover { background: #e67e22; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
+    /* 4. БЛОК СТАТИСТИКИ */
+    .stats-bar { background: #fff; padding: 40px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; z-index: 10; margin: -40px auto 0; border-radius: 15px; max-width: 1000px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; padding: 0 40px; }
+    .stat-item h3 { font-size: 2.2rem; color: #d35400; margin: 0; font-weight: 800; }
+    .stat-item p { margin: 5px 0 0; font-weight: 600; color: #555; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+   /* 5. СЕКЦИЯ ШАГОВ */
+.steps { padding: 120px 0; background: radial-gradient(circle at center, #ffffff 0%, #fcfaf8 100%); text-align: center; position: relative; }
+.steps-header { text-align: center; margin-bottom: 80px; cursor: default; display: inline-block; }
+.steps-subtitle { display: block; color: #d35400; text-transform: uppercase; font-weight: 700; font-size: 0.85rem; letter-spacing: 3px; margin-bottom: 10px; }
+
+#steps-title { 
+    font-size: 3rem; 
+    font-weight: 800; 
+    color: #1a1a1a; 
+    margin: 0; 
+    display: inline-block; 
+    position: relative; 
+    transition: all 0.4s ease; 
+}
+
+/* Слово в span всегда оранжевое */
+#steps-title span { 
+    color: #d35400; 
+    transition: color 0.4s ease; 
+}
+
+/* Оранжевая линия под заголовком */
+#steps-title::after { 
+    content: ""; 
+    display: block; 
+    width: 60px; /* Начальная ширина линии */
+    height: 4px; 
+    background: #d35400; 
+    margin: 10px auto 0; 
+    border-radius: 2px; 
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+/* Эффект при наведении на всю шапку секции */
+.steps-header:hover #steps-title { 
+    transform: scale(1.05); 
+}
+
+.steps-header:hover #steps-title::after { 
+    width: 100%; /* Линия растягивается на весь заголовок */
+}
+
+/* Стили карточек шагов (оставляем без изменений) */
+.step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px 20px; margin-top: 50px; }
+.step-item { background: white; padding: 40px 20px 30px; border-radius: 16px; position: relative; z-index: 2; border: 1px solid #eee; transition: all 0.5s ease; cursor: pointer; }
+.step-item:hover { transform: translateY(-10px); border-color: rgba(211, 84, 0, 0.4); box-shadow: 0 20px 40px rgba(211, 84, 0, 0.15); }
+.step-number { width: 50px; height: 50px; background: #d35400; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 800; margin: -65px auto 20px; border: 6px solid #fff; transition: 0.4s; }
+.step-item:hover .step-number { background: #ff6a00; transform: scale(1.1) rotate(10deg); box-shadow: 0 0 25px rgba(255, 106, 0, 0.6); }
+.step-item strong { display: block; font-size: 1.1rem; margin-bottom: 12px; color: #1a1a1a; text-transform: uppercase; transition: 0.3s; }
+.step-item:hover strong { color: #d35400; }
+.step-item small { color: #666; font-size: 0.95rem; }
+
+    /* 6. ЦЕННОСТИ: МЯГКИЙ ПЕСОК (ТЕПЛЫЙ) */
+    .features { padding: 120px 0; background-color: #fdfaf5; position: relative; border-top: 1px solid #f2eee9; border-bottom: 1px solid #f2eee9; }
+    .features-header { text-align: center; margin-bottom: 80px; }
+    .features-subtitle { display: block; color: #d35400; text-transform: uppercase; font-weight: 700; font-size: 0.85rem; letter-spacing: 4px; margin-bottom: 15px; }
+    #features-title { color: #2c2c2c; font-size: 3rem; font-weight: 800; margin: 0; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px 30px; margin-top: 50px; }
+    .feature-item { background: #ffffff; padding: 50px 30px; border-radius: 20px; border: 1px solid rgba(211, 84, 0, 0.1); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); box-shadow: 0 10px 25px rgba(165, 140, 120, 0.1); text-align: center; position: relative; }
+    .feature-item::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #d35400; transform: scaleX(0); transition: transform 0.4s ease; border-radius: 20px 20px 0 0; }
+    .feature-icon { width: 85px; height: 85px; background: #fff8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.6rem; margin: -95px auto 25px; box-shadow: 0 8px 15px rgba(0,0,0,0.05); transition: all 0.4s ease; border: 2px solid #fff; }
+    .feature-item h3 { color: #1a1a1a; font-weight: 800; margin-bottom: 15px; font-size: 1.25rem; transition: color 0.3s; }
+    .feature-item p { color: #665c54; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+    .feature-item:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(165, 140, 120, 0.15); }
+    .feature-item:hover::before { transform: scaleX(1); }
+    .feature-item:hover .feature-icon { background: #d35400; transform: scale(1.1) rotate(5deg); box-shadow: 0 12px 24px rgba(211, 84, 0, 0.2); }
+    .feature-item:hover h3 { color: #d35400; }
+
+    /* 7. ГАЛЕРЕЯ: ТЕМНЫЙ СЛАНЕЦ (ЭФФЕКТ КИНО) */
+    .gallery { padding: 120px 0; background-color: #1e2124; color: white; text-align: center; position: relative; overflow: hidden; }
+    .gallery::before { content: ""; position: absolute; top: -10%; left: -10%; width: 40%; height: 40%; background: radial-gradient(circle, rgba(211, 84, 0, 0.05) 0%, rgba(30, 33, 36, 0) 70%); pointer-events: none; }
+    .gallery-header { margin-bottom: 60px; position: relative; z-index: 2; }
+    .gallery-subtitle { display: block; color: #d35400; text-transform: uppercase; font-weight: 700; font-size: 0.85rem; letter-spacing: 5px; margin-bottom: 15px; }
+    #gallery-title { font-size: 3rem; font-weight: 800; color: #ffffff; margin: 0; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 50px; position: relative; z-index: 2; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 18px; height: 380px; cursor: pointer; background: #2a2d31; box-shadow: 0 20px 40px rgba(0,0,0,0.3); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: all 0.7s ease; filter: brightness(0.9); }
+    .gallery-item:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+    .gallery-item:hover img { transform: scale(1.1); filter: brightness(1.1); }
+    .gallery-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 25px 25px; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); color: white; text-align: left; transform: translateY(20px); opacity: 0; transition: all 0.4s ease; }
+    .gallery-item:hover .gallery-content { transform: translateY(0); opacity: 1; }
+    .gallery-content h4 { margin: 0 0 5px; font-size: 1.2rem; font-weight: 700; }
+    .gallery-content p { margin: 0; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+
+    /* 8. ОБО МНЕ */
+    .about { padding: 120px 0; background: #fff; }
+    .about-flex { display: flex; align-items: flex-start; gap: 60px; flex-wrap: wrap; }
+    .about-image img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 1px solid #eee; padding: 8px; }
+    .contact-link { padding: 14px 30px; border-radius: 8px; text-decoration: none; color: white; font-weight: 700; transition: 0.3s; background: #d35400; display: inline-block; }
+    .contact-link:hover { background: #e67e22; transform: translateY(-2px); }
+
+   /* АДАПТИВНОСТЬ */
+    @media (max-width: 768px) {
+        #steps-title, #features-title, #gallery-title { font-size: 2.2rem; }
+        .hero h1 { font-size: 2.4rem; }
+        .feature-icon { width: 75px; height: 75px; font-size: 2.2rem; margin: -85px auto 20px; }
+        .gallery-item { height: 300px; }
+
+        /* ИСПРАВЛЕНИЕ: Добавляем настройки для интерактивного текста на мобилках */
+        .hero-interactive {
+            white-space: normal; /* Текст может переноситься на новую строку */
+            width: auto;
+            border-right: none;  /* Убираем палочку-курсор */
+            opacity: 0;          /* Сначала текст не виден */
+            animation: fadeUpReveal 1s ease-out forwards; /* Запуск анимации */
+            animation-delay: 0.5s;
+        }
+    }
+
+    /* ИСПРАВЛЕНИЕ: Описание анимации (ставим ВНЕ блока @media, чтобы она была доступна везде) */
+    @keyframes fadeUpReveal {
+        from { 
+            opacity: 0; 
+            transform: translateY(20px); 
+        }
+        to { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+    }
+    * Стили для секции с картой */
+.location-section { padding: 100px 0; background: #fff; }
+.location-flex { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
+
+.map-container { 
+    flex: 1; 
+    min-width: 300px; 
+    height: 450px; 
+    border-radius: 20px; 
+    overflow: hidden; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+}
+
+.location-info { flex: 1; min-width: 300px; }
+.dist-card { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+    background: #f9f9f9; 
+    padding: 20px; 
+    border-radius: 12px; 
+    margin-bottom: 15px; 
+}
+.dist-icon { font-size: 2rem; }
+
+/* 1. Делает прокрутку к разделам плавной */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. Настраивает внешний вид контейнера карты */
+.map-container {
+    width: 100%;
+    height: 450px; 
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* 3. Делает фото автора круглым и четким */
+.about-image img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+/* Основной стиль карточки-ссылки */
+.dist-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    text-decoration: none; /* Убирает синее подчеркивание */
+    color: #333;           /* Цвет текста */
+    margin-bottom: 15px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Плавная анимация */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Эффект при наведении (Hover) */
+.dist-card:hover {
+    transform: translateY(-5px); /* Карточка приподнимается */
+    border-color: #d35400;       /* Цвет рамки становится оранжевым */
+    box-shadow: 0 12px 24px rgba(211, 84, 0, 0.15); /* Мягкая оранжевая тень */
+    background-color: #fffaf7;   /* Очень легкий теплый оттенок фона */
+}
+
+/* Иконка флага */
+.dist-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Текст внутри карточки */
+.dist-text strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    transition: color 0.3s;
+}
+
+.dist-card:hover .dist-text strong {
+    color: #d35400; /* Заголовок тоже меняет цвет при наведении */
+}
+
+.dist-text span {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Стрелочка в конце (появляется при наведении) */
+.arrow-icon {
+    margin-left: auto;
+    font-size: 1.2rem;
+    color: #ccc;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.dist-card:hover .arrow-icon {
+    opacity: 1;
+    transform: translateX(0);
+    color: #d35400;
+}
+/* Фон затемнения */
+.modal-overlay {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px); /* Размытие фона сайта */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Контейнер для формы */
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 800px;
+    height: 85vh;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.4s ease;
+}
+
+/* Кнопка закрытия */
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+    z-index: 1001;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+/* НОВЫЙ БЛОК: С ЧЕГО НАЧАТЬ (MINIMAL) */
+.action-block {
+    position: relative;
+    height: 500px; /* Фиксированная высота для аккуратности */
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.action-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.action-bg img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4); /* Хорошее затемнение для текста */
+}
+
+.action-overlay {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.action-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 10px 0 20px;
+}
+
+.action-text {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Большая кнопка анкеты */
+.btn-action.main {
+    background: #d35400;
+    color: white;
+    padding: 18px 50px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(211, 84, 0, 0.3);
+}
+
+.btn-action.main:hover {
+    background: #e67e22;
+    transform: translateY(-3px);
+}
+
+/* Мини-кнопки соцсетей */
+.action-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-mini {
+    padding: 10px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.btn-mini.wa { background: rgba(37, 211, 102, 0.2); }
+.btn-mini.tg { background: rgba(0, 136, 204, 0.2); }
+
+.btn-mini:hover {
+    background: rgba(255,255,255,1);
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .action-block { height: auto; padding: 80px 0; }
+    .action-title { font-size: 2.2rem; }
+    .action-socials { flex-direction: column; width: 100%; }
+}
+/* --- СТИЛИ ПОДВАЛА (Footer) --- */
+footer { background: #121212; color: #fff; padding: 60px 0 20px; border-top: 1px solid rgba(211, 84, 0, 0.3); margin-top: 80px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-logo h3 { color: #d35400; margin: 0 0 15px; font-size: 1.8rem; font-weight: 800; letter-spacing: 2px; }
+.footer-logo p { color: #999; max-width: 350px; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
+.footer-links h4, .footer-contact h4 { margin-bottom: 20px; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #fff; }
+.footer-links a { display: block; color: #bbb; text-decoration: none; margin-bottom: 10px; transition: 0.3s; font-size: 0.95rem; }
+.footer-links a:hover { color: #d35400; padding-left: 5px; }
+.footer-contact p { color: #bbb; margin-bottom: 10px; font-size: 0.95rem; }
+.footer-bottom { border-top: 1px solid #222; padding-top: 20px; text-align: center; color: #555; font-size: 0.8rem; }
+
+/* КНОПКИ СОЦСЕТЕЙ (ЦВЕТНЫЕ) */
+.soc-link { text-decoration: none; border: 2px solid #d35400; padding: 8px 18px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; transition: 0.3s; display: inline-block; color: #d35400; }
+.soc-link:hover { background: #d35400; color: #fff; }
+.btn-fb { color: #1877F2 !important; border-color: #1877F2 !important; }
+.btn-fb:hover { background: #1877F2 !important; color: #fff !important; }
+.btn-tg { color: #24A1DE !important; border-color: #24A1DE !important; }
+.btn-tg:hover { background: #24A1DE !important; color: #fff !important; }
+.btn-wa { color: #25D366 !important; border-color: #25D366 !important; }
+.btn-wa:hover { background: #25D366 !important; color: #fff !important; }
+
+@media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .footer-logo p { margin: 0 auto 20px; }
+    .social-bar { justify-content: center; flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+    <div class="container">
+        <a href="#top" class="logo-nav" id="main-logo" style="opacity: 0; transition: 0.4s ease;">
+    <img src="logo.png" alt="Logo">
+    <span>HI-TRAIL</span>
+</a>
+        <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+    <a href="about.html" id="nav-about-btn">О Приднестровье</a>
+    
+    <a href="advice.html" id="nav-advice-btn" style="color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; border: 1px solid #d35400; padding: 8px 15px; border-radius: 4px; transition: 0.3s; text-transform: uppercase;">Полезные советы</a>
+            <div class="lang-switch">
+                <a href="javascript:void(0)" onclick="changeLang('ru')">RU</a>
+                <a href="javascript:void(0)" onclick="changeLang('en')">EN</a>
+                <a href="javascript:void(0)" onclick="changeLang('ro')">RO</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header id="top">
+    <div class="hero">
+        <h1 id="hero-title">Соберите своё путешествие в Pridnestrovie</h1>
+        
+        <div class="hero-sub-wrapper" style="min-height: 1.6em; margin-bottom: 35px;">
+            <span id="hero-sub" class="hero-interactive">Индивидуальные маршруты в диалоге с вами. Без шаблонов.</span>
+        </div>
+        
+        <a href="javascript:void(0)" onclick="openForm()" id="btn-main" class="btn">Собрать тур сейчас</a>
+    </div>
+</header>
+
+<section class="stats-bar">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item"><h3>7+</h3><p id="st-1">лет опыта</p></div>
+            <div class="stat-item"><h3>100%</h3><p id="st-2">авторские маршруты</p></div>
+            <div class="stat-item"><h3>24/7</h3><p id="st-3">поддержка гостей</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="steps">
+    <div class="container">
+        <div class="steps-header">
+    <span class="steps-subtitle" id="steps-sub">Маршрут сотрудничества</span>
+    <h2 id="steps-title">Путь к вашему <span>приключению</span></h2>
+</div>
+        <div class="step-grid">
+            <div class="step-item"><span class="step-number">1</span><strong id="s1-t">Знакомство</strong><small id="s1-d">Заполняете анкету пожеланий</small></div>
+            <div class="step-item"><span class="step-number">2</span><strong id="s2-t">Проектирование</strong><small id="s2-d">Создаем идеальную логику тура</small></div>
+            <div class="step-item"><span class="step-number">3</span><strong id="s3-t">Бронирование</strong><small id="s3-d">Депозит 30% для фиксации дат</small></div>
+            <div class="step-item"><span class="step-number">4</span><strong id="s4-t">Готовность</strong><small id="s4-d">Оплата 70% до начала поездки</small></div>
+            <div class="step-item"><span class="step-number">5</span><strong id="s5-t">Старт</strong><small id="s5-d">Встреча и начало путешествия</small></div>
+        </div>
+    </div>
+</section>
+
+<section class="gallery">
+    <div class="container">
+        <h2 id="gallery-title" style="font-weight: 800; font-size: 2.5rem;">Атмосфера наших путешествий</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox('tour1.jpg')"><img src="tour1.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Photo+1'"></div>
+            <div class="gallery-item" onclick="openLightbox('tour2.jpg')"><img src="tour2.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Photo+2'"></div>
+            <div class="gallery-item" onclick="openLightbox('tour3.jpg')"><img src="tour3.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Photo+3'"></div>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <h2 id="features-title" style="text-align: center; margin-bottom: 80px; font-weight: 800; font-size: 2.5rem;">В чём ценность Hi-Trail?</h2>
+        <div class="feature-grid">
+            <div class="feature-item"><div class="feature-icon">🌍</div><h3 id="f1-t">Редкое направление</h3><p id="f1-d">Маршрут вне туристических шаблонов.</p></div>
+            <div class="feature-item"><div class="feature-icon">🏰</div><h3 id="f2-t">История без декораций</h3><p id="f2-d">Настоящие крепости и символы эпох.</p></div>
+            <div class="feature-item"><div class="feature-icon">🍷</div><h3 id="f3-t">Вкус региона</h3><p id="f3-d">Локальная кухня и винные традиции.</p></div>
+            <div class="feature-item"><div class="feature-icon">👥</div><h3 id="f4-t">Живая культура</h3><p id="f4-d">Люди и традиции. Жизнь изнутри.</p></div>
+            <div class="feature-item"><div class="feature-icon">🍃</div><h3 id="f5-t">Перезагрузка</h3><p id="f5-d">Природа Днестра и тишина.</p></div>
+            <div class="feature-item"><div class="feature-icon">💎</div><h3 id="f6-t">Премиальный формат</h3><p id="f6-d">Индивидуально. Внимание к деталям.</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="action-block">
+    <div class="action-container">
+        <div class="action-bg">
+            <img src="tour5.jpg" alt="Приднестровье">
+        </div>
+        
+        <div class="action-overlay">
+            <div class="container">
+                <h2 class="action-title" id="act-title">С чего вам начать?</h2>
+                <p class="action-text" id="act-desc">Напишите запрос о туре в мессенджеры или заполните анкету</p>
+                
+                <div class="action-buttons">
+                    <a href="javascript:void(0)" onclick="openForm()" class="btn-action main" id="act-btn">Заполнить анкету</a>
+                    
+                    <div class="action-socials">
+                        <a href="https://wa.me/37377727035" target="_blank" class="btn-mini wa">WhatsApp</a>
+                        <a href="https://t.me/Igorboaghi" target="_blank" class="btn-mini tg">Telegram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="lightbox" onclick="closeLightbox()">
+    <span id="lightbox-close">×</span>
+    <img id="lightbox-img" src="">
+</div>
+
+<section class="location-section">
+    <div class="container">
+        <div class="location-flex">
+            <div class="map-container">
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d173874.5849818818!2d29.3582498523315!3d46.85376711516008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c9705990263695%3A0x6b6382103f6f9f5!2sTiraspol!5e0!3m2!1sen!2s!4v1715800000000!5m2!1sen!2s" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+           <div class="location-info">
+    <h2 id="loc-title" style="font-weight: 800;">Где мы находимся?</h2>
+    <p id="loc-desc">Приднестровье начинается здесь. Проложите маршрут от ближайших аэропортов до Бендерской крепости:</p>
+
+    <a href="https://www.google.com/maps/dir/Chi%C8%99in%C4%83u+International+Airport+(KIV),+Dacia+Ave+80%2F3,+Chi%C8%99in%C4%83u,+Moldova/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D1%81%D0%BA%D0%B0%D1%8F+%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D1%81%D1%82%D1%8C/@46.9152342,28.9329729,11z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x40c97e93006a19f7:0x5e2373a0e10e14a1!2m2!1d28.9324795!2d46.9322054!1m5!1m1!1s0x40c90967396a848b:0x5109f6e1f02f06b5!2m2!1d29.486259!2d46.837856!3e0" target="_blank" class="dist-card">
+        <div class="dist-icon">🇲🇩</div>
+        <div class="dist-text">
+            <strong id="loc-kiv">Аэропорт Кишинёв (KIV)</strong>
+            <span id="loc-kiv-d">~60 км | 1 час 10 мин до Крепости</span>
+        </div>
+        <div class="arrow-icon">→</div>
+    </a>
+
+    <a href="https://www.google.com/maps/dir/Ia%C8%99i+International+Airport,+Strada+Moara+de+V%C3%A2nt+34,+Ia%C8%99i+700315,+Romania/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80%D1%81%D0%BA%D0%B0%D1%8F+%D0%BA%D1%80%D0%B5%D0%BF%D0%BE%D1%81%D1%82%D1%8C/@47.0142835,27.7058864,9z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x40cafb5059d4376b:0x7940291410f994d5!2m2!1d27.6173007!2d47.1774373!1m5!1m1!1s0x40c90967396a848b:0x5109f6e1f02f06b5!2m2!1d29.486259!2d46.837856!3e0" target="_blank" class="dist-card">
+        <div class="dist-icon">🇷🇴</div>
+        <div class="dist-text">
+            <strong id="loc-ias">Аэропорт Яссы (IAS)</strong>
+            <span id="loc-ias-d">~210 км | 3.5 часа до Крепости</span>
+        </div>
+        <div class="arrow-icon">→</div>
+    </a>
+</div>
+        </div>
+    </div>
+</section>
+
+<section class="about">
+    <div class="container">
+        <div class="about-flex">
+            <div class="about-image"><img src="me.jpg" onerror="this.src='https://via.placeholder.com/250'"></div>
+            <div class="about-text">
+                <h2 id="about-name" style="font-weight: 800; font-size: 3rem; margin:0;">Игорь Боагий</h2>
+                <div class="about-badge" id="about-status">Ваш проводник в Приднестровье</div>
+                <p class="about-quote" id="about-p1">«Мы не продаём готовые турпакеты. Мы формируем путешествие вместе с вами».</p>
+                <div style="background:#f9f9f9; padding:25px; border-radius:15px; margin-bottom:35px; border:1px solid #eee;">
+                    <strong id="pay-label" style="display:block; margin-bottom:5px;">Условия оплаты:</strong> 
+                    <span id="about-p2">30% депозит для фиксации дат, 70% расчет перед приездом.</span>
+                </div>
+                <div class="contact-group">
+                    <a href="https://wa.me/37377727035" class="contact-link" style="background:#25D366;">WhatsApp</a>
+                    <a href="https://t.me/Igorboaghi" class="contact-link" style="background:#0088cc;">Telegram</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h3>HI-TRAIL</h3>
+                <p id="f-desc">Соберите своё путешествие в Pridnestrovie</p>
+                <div class="social-bar" style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <a href="https://www.instagram.com/igor.boaghi/" target="_blank" class="soc-link">INSTAGRAM</a>
+                    <a href="https://www.facebook.com/igor.boaghi" target="_blank" class="soc-link btn-fb">FACEBOOK</a>
+                </div>
+                <div class="social-bar" style="display: flex; gap: 10px;">
+                    <a href="https://t.me/Igorboaghi" target="_blank" class="soc-link btn-tg">TELEGRAM</a>
+                    <a href="https://wa.me/37377727035" target="_blank" class="soc-link btn-wa">WHATSAPP</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4 id="f-nav-t">Навигация</h4>
+                <a href="#top" id="f-n1">Главная страница</a>
+                <a href="advice.html" id="f-n2">Полезные советы</a>
+                <a href="about.html" id="f-n3">О Приднестровье</a>
+            </div>
+            <div class="footer-contact">
+                <h4 id="f-con-t">Контакты</h4>
+                <p>📞 +373 (777) 27-035</p>
+                <p>✉️ igor.boaghi@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HI-TRAIL. <span id="f-copy">Путешествуй с душой.</span></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // 1. ЛОГОТИП ПРИ СКРОЛЛЕ
+    window.onscroll = function() {
+        var logo = document.getElementById('main-logo');
+        if (document.documentElement.scrollTop > 150 || document.body.scrollTop > 150) { 
+            logo.style.opacity = "1"; 
+        } else { 
+            logo.style.opacity = "0"; 
+        }
+    };
+
+    // 2. ГАЛЕРЕЯ
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').style.display = 'flex';
+    }
+    function closeLightbox() { 
+        document.getElementById('lightbox').style.display = 'none'; 
+    }
+
+   // 3. ДАННЫЕ ПЕРЕВОДОВ
+    const data = {
+        ru: {
+            h1: "Соберите своё путешествие в Pridnestrovie", 
+            hSub: "Индивидуальные маршруты в диалоге с вами. Без шаблонов.", 
+            bMain: "Собрать тур сейчас",
+            sTitle: "Путь к вашему <span>приключению</span>", 
+            s1: "Знакомство", s1s: "Заполняете анкету пожеланий", 
+            s2: "Проектирование", s2s: "Создаем идеальную логику тура", 
+            s3: "Бронирование", s3s: "Депозит 30% для фиксации дат", 
+            s4: "Готовность", s4s: "Оплата 70% до начала поездки", 
+            s5: "Старт", s5s: "Встреча и начало путешествия",
+            fT: "В чём ценность Hi-Trail?", 
+            f1t: "Редкое направление", f1d: "Маршрут вне туристических шаблонов.", 
+            f2t: "История без декораций", f2d: "Настоящие крепости и символы эпох.", 
+            f3t: "Вкус региона", f3d: "Локальная кухня и винные традиции.", 
+            f4t: "Живая культура", f4d: "Люди и традиции. Жизнь изнутри.", 
+            f5t: "Перезагрузка", f5d: "Природа Днестра и тишина.", 
+            f6t: "Премиальный формат", f6d: "Максимальное внимание к деталям.",
+            gT: "Атмосфера наших путешествий", 
+            locTitle: "Где мы находимся?", 
+            locDesc: "Приднестровье — уникальный край. Удобная логистика позволяет прибыть к нам из аэропортов.",
+            locKivD: "~70 км | 1.5 часа в пути", 
+            locIasD: "~220 км | 4 часа в пути",
+            aT: "Ваш проводник в Приднестровье", 
+            aP1: "«Мы не продаём готовые турпакеты. Мы формируем путешествие вместе с вами»", 
+            aP2: "30% депозит для фиксации дат, 70% расчет перед приездом.", 
+            payL: "Условия оплаты:",
+            st1: "лет опыта", st2: "авторские маршруты", st3: "поддержка гостей", 
+            advBtn: "Полезные советы",
+            actT: "С чего вам начать?",
+            actD: "Напишите запрос о туре в мессенджеры или заполните анкету",
+            actB: "Заполнить анкету",
+            stepsSub: "Маршрут сотрудничества",
+            locKiv: "Аэропорт Кишинёв (KIV)",
+            locIas: "Аэропорт Яссы (IAS)",
+            myName: "Игорь Боагий",
+            aboutBtn: "О Приднестровье",
+            // ПОДВАЛ RU
+            fDesc: "Путешествия ручной работы по Приднестровью. Мы создаем авторские маршруты, которые открывают настоящую душу нашего края.",
+            fNavT: "Навигация", fN1: "Главная страница", fN2: "Полезные советы", fN3: "О Приднестровье", fConT: "Контакты", fCopy: "Путешествуй с душой. Все права защищены."
+        },
+        en: {
+            h1: "Build your journey to Pridnestrovie", 
+            hSub: "Bespoke itineraries through dialogue. No templates.", 
+            bMain: "Start building now",
+            sTitle: "Path to your <span>adventure</span>", 
+            s1: "Introduction", s1s: "Tell us your preferences", 
+            s2: "Design", s2s: "We create the perfect logic", 
+            s3: "Booking", s3s: "30% deposit to secure dates", 
+            s4: "Finalization", s4s: "70% payment before arrival", 
+            s5: "The Start", s5s: "Meeting and trip beginning",
+            fT: "The Value of Hi-Trail", 
+            f1t: "Rare Destination", f1d: "Itineraries far from tourist templates.", 
+            f2t: "Raw History", f2d: "Authentic landmarks without 'polish'.", 
+            f3t: "Local Flavor", f3d: "Authentic cuisine and wine.", 
+            f4t: "Living Culture", f4d: "Experience the region from inside.", 
+            f5t: "Recharge", f5d: "Nature and silence.", 
+            f6t: "Premium Format", f6d: "Maximum attention to detail.",
+            gT: "Atmosphere of Our Journeys", 
+            locTitle: "Location", 
+            locDesc: "Pridnestrovie is unique. Easy logistics from airports.",
+            locKivD: "~70 km | 1.5h drive", 
+            locIasD: "~220 km | 4h drive",
+            aT: "Your Guide in Pridnestrovie", 
+            aP1: "“We create experiences together with you...”", 
+            aP2: "30% deposit to secure dates, 70% before arrival.", 
+            payL: "Payment terms:",
+            st1: "years experience", st2: "bespoke tours", st3: "guest support", 
+            advBtn: "Practical Advice",
+            actT: "How to start?",
+            actD: "Send a request via messengers or fill out the form",
+            actB: "Fill out the form",
+            stepsSub: "Cooperation Route",
+            locKiv: "Chisinau Airport (KIV)",
+            locIas: "Iasi Airport (IAS)",
+            myName: "Igor Boaghi",
+            aboutBtn: "About Pridnestrovie",
+            // ПОДВАЛ EN
+            fDesc: "Handmade travels across Pridnestrovie. We create bespoke itineraries that reveal the true soul of our region.",
+            fNavT: "Navigation", fN1: "Home Page", fN2: "Practical Advice", fN3: "About Pridnestrovie", fConT: "Contacts", fCopy: "Travel with soul. All rights reserved."
+        },
+        ro: {
+            h1: "Creează-ți propria călătorie în Pridnestrovie", 
+            hSub: "Itinerarii individuale în dialog cu tine. Fără șabloane.", 
+            bMain: "Creează turul acum",
+            sTitle: "Calea către <span>aventura</span> ta", 
+            s1: "Cunoștință", s1s: "Completează chestionarul", 
+            s2: "Proiectare", s2s: "Creăm logica ideală a turului", 
+            s3: "Rezervare", s3s: "Depozit 30% pentru fixarea datelor", 
+            s4: "Finalizare", s4s: "Plata 70% înainte de călătorie", 
+            s5: "Start", s5s: "Întâlnirea și începutul călătoriei",
+            fT: "Care este valoarea Hi-Trail?", 
+            f1t: "Destinație rară", f1d: "Traseu în afara șabloanelor turistice.", 
+            f2t: "Istorie fără decor", f2d: "Cetăți adevărate și simboluri ale epocilor.", 
+            f3t: "Gustul regiunii", f3d: "Bucătăria locală și tradițiile vinicole.", 
+            f4t: "Cultură vie", f4d: "Oameni și tradiții. Viața din interior.", 
+            f5t: "Resetare", f5d: "Natura Nistrului și liniște.", 
+            f6t: "Format Premium", f6d: "Atenție maximă la detalii.",
+            gT: "Atmosfera călătoriilor noastre", 
+            locTitle: "Unde ne aflăm?", 
+            locDesc: "Pridnestrovie este un ținut unic. Logistica ușoară permite sosirea de la aeroporturi.",
+            locKivD: "~70 km | 1.5 ore pe drum", 
+            locIasD: "~220 км | 4 ore pe drum",
+            aT: "Ghidul tău în Pridnestrovie", 
+            aP1: "«Noi nu vindem pachete turistice gata făcute. Formăm călătoria împreună cu tine»", 
+            aP2: "30% depozit pentru fixarea datelor, 70% plată înainte de sosire.", 
+            payL: "Condiții de plată:",
+            st1: "ani experiență", st2: "trasee de autor", st3: "suport oaspeți", 
+            advBtn: "Sfaturi practice",
+            actT: "Cu ce să începeți?",
+            actD: "Trimiteți o cerere prin mesagerii sau completați chestionarul",
+            actB: "Completează chestionarul",
+            stepsSub: "Itinerariul de colaborare",
+            locKiv: "Aeroportul Chișinău (KIV)",
+            locIas: "Aeroportul Iași (IAS)",
+            myName: "Igor Boaghi",
+            aboutBtn: "Despre Pridnestrovie",
+            // ПОДВАЛ RO
+            fDesc: "Călătorii lucrate manual prin Pridnestrovie. Creăm itinerarii de autor care dezvăluie sufletul adevărat al regiunii noastre.",
+            fNavT: "Navigație", fN1: "Pagina Principală", fN2: "Sfaturi Practice", fN3: "Despre Pridnestrovie", fConT: "Contacte", fCopy: "Călătorește cu suflet. Toate drepturile rezervate."
+        }
+    };
+
+    function changeLang(lang) {
+        const l = data[lang];
+        if(!l) return;
+        
+        document.getElementById('hero-title').innerText = l.h1;
+        document.getElementById('act-title').innerText = l.actT;
+        document.getElementById('act-desc').innerText = l.actD;
+        document.getElementById('act-btn').innerText = l.actB;
+        document.getElementById('steps-sub').innerText = l.stepsSub;
+        document.getElementById('loc-kiv').innerText = l.locKiv;
+        document.getElementById('loc-ias').innerText = l.locIas;
+        document.getElementById('about-name').innerText = l.myName;
+        document.getElementById('nav-about-btn').innerText = l.aboutBtn;
+        
+        const subElement = document.getElementById('hero-sub');
+        if (subElement) {
+            subElement.innerText = l.hSub;
+            subElement.style.animation = 'none';
+            void subElement.offsetHeight; 
+            subElement.style.animation = null; 
+        }
+
+        document.getElementById('btn-main').innerText = l.bMain;
+        document.getElementById('steps-title').innerHTML = l.sTitle;
+        document.getElementById('s1-t').innerText = l.s1; document.getElementById('s1-d').innerText = l.s1s;
+        document.getElementById('s2-t').innerText = l.s2; document.getElementById('s2-d').innerText = l.s2s;
+        document.getElementById('s3-t').innerText = l.s3; document.getElementById('s3-d').innerText = l.s3s;
+        document.getElementById('s4-t').innerText = l.s4; document.getElementById('s4-d').innerText = l.s4s;
+        document.getElementById('s5-t').innerText = l.s5; document.getElementById('s5-d').innerText = l.s5s;
+        document.getElementById('features-title').innerText = l.fT;
+        document.getElementById('f1-t').innerText = l.f1t; document.getElementById('f1-d').innerText = l.f1d;
+        document.getElementById('f2-t').innerText = l.f2t; document.getElementById('f2-d').innerText = l.f2d;
+        document.getElementById('f3-t').innerText = l.f3t; document.getElementById('f3-d').innerText = l.f3d;
+        document.getElementById('f4-t').innerText = l.f4t; document.getElementById('f4-d').innerText = l.f4d;
+        document.getElementById('f5-t').innerText = l.f5t; document.getElementById('f5-d').innerText = l.f5d;
+        document.getElementById('f6-t').innerText = l.f6t; document.getElementById('f6-d').innerText = l.f6d;
+        document.getElementById('gallery-title').innerText = l.gT;
+        document.getElementById('loc-title').innerText = l.locTitle;
+        document.getElementById('loc-desc').innerText = l.locDesc;
+        document.getElementById('loc-kiv-d').innerText = l.locKivD;
+        document.getElementById('loc-ias-d').innerText = l.locIasD;
+        document.getElementById('about-status').innerText = l.aT;
+        document.getElementById('about-p1').innerText = l.aP1;
+        document.getElementById('about-p2').innerText = l.aP2;
+        document.getElementById('pay-label').innerText = l.payL;
+        document.getElementById('st-1').innerText = l.st1;
+        document.getElementById('st-2').innerText = l.st2;
+        document.getElementById('st-3').innerText = l.st3;
+        document.getElementById('nav-advice-btn').innerText = l.advBtn;
+
+        // ПЕРЕВОД ПОДВАЛА (Footer)
+        document.getElementById('f-desc').innerText = l.fDesc;
+        document.getElementById('f-nav-t').innerText = l.fNavT;
+        document.getElementById('f-n1').innerText = l.fN1;
+        document.getElementById('f-n2').innerText = l.fN2;
+        document.getElementById('f-n3').innerText = l.fN3;
+        document.getElementById('f-con-t').innerText = l.fConT;
+        document.getElementById('f-copy').innerText = l.fCopy;
+        localStorage.setItem('selectedLang', lang);
+    }
+
+    function openForm() {
+        document.getElementById('form-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeForm() {
+        document.getElementById('form-modal').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    // И скролл логотипа тоже оставь
+    window.onscroll = function() {
+        var logo = document.getElementById('main-logo');
+        if (document.documentElement.scrollTop > 150 || document.body.scrollTop > 150) { 
+            logo.style.opacity = "1"; 
+        } else { 
+            logo.style.opacity = "0"; 
+        }
+    };
+    document.addEventListener('DOMContentLoaded', () => {
+    // Проверяем, есть ли сохраненный язык в памяти
+    const savedLang = localStorage.getItem('selectedLang');
+    
+    // Если есть — включаем его, если нет — оставляем русский (по умолчанию)
+    if (savedLang) {
+        changeLang(savedLang);
+    } else {
+        changeLang('ru');
+    }
+});
+</script>
+<div id="form-modal" class="modal-overlay" onclick="closeForm()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal" onclick="closeForm()">&times;</span>
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLScGVyHgxSTpcQgo1k_VKEARE7F984dcfbLASV4u1_p5AmCLVg/viewform?embedded=true" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">Загрузка...</iframe>
+        </div>
+    </div>
+</body>
+</html>

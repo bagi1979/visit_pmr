@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практические советы | Hi-Trail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; margin: 0; color: #333; line-height: 1.6; background-color: #fdfaf5; padding-top: 80px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* НАВИГАЦИЯ */
+        .nav-bar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); padding: 15px 0; z-index: 1000; }
+        .nav-bar .container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-right { display: flex; align-items: center; gap: 15px; }
+        .back-btn { color: white; text-decoration: none; font-weight: 700; border: 1px solid #d35400; padding: 8px 20px; border-radius: 6px; transition: 0.3s; font-size: 0.9rem; }
+        .back-btn:hover { background: #d35400; }
+        
+         /* Кнопки в шапке */
+        #nav-home-btn, #nav-about-btn { color: white; text-decoration: none; font-weight: 700; padding: 8px 20px; border-radius: 6px; transition: 0.3s; font-size: 0.8rem; text-transform: uppercase; }
+        #nav-home-btn { border: 1px solid rgba(255,255,255,0.3); }
+        #nav-home-btn:hover { background: rgba(255, 255, 255, 0.1); border-color: #fff; transform: translateY(-2px); }
+
+        #nav-about-btn { border: 1px solid #d35400; }
+        #nav-about-btn:hover { background: #d35400; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(211, 84, 0, 0.4); }
+        
+        /* Переключатель языков */
+        .lang-switch a { color: white; text-decoration: none; margin-left: 10px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; border-radius: 4px; transition: 0.3s; }
+        .lang-switch a:hover { background: #d35400; border-color: #d35400; }
+
+        /* HEADER */
+        .hero-advice { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('tour10.jpg'); 
+                       background-size: cover; 
+                       background-position: center 30%; 
+                       color: white; 
+                       padding: 120px 0 80px; 
+                       text-align: center; 
+                       margin-bottom: 40px;
+                       border-radius: 0 0 25px 25px; }
+        .hero-advice h1 { font-size: 3rem; margin: 0; font-weight: 800; }
+
+        /* КАРТОЧКИ КОНТЕНТА */
+        .info-section { background: white; padding: 40px; border-radius: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid #eee; position: relative; overflow: hidden; }
+        .info-section h2 { color: #d35400; font-size: 1.8rem; margin-top: 0; display: flex; align-items: center; gap: 15px; }
+        
+        .important-note { background: #fff5f5; border-left: 6px solid #e74c3c; padding: 30px; border-radius: 15px; margin: 40px 0; }
+        .important-note h3 { color: #c0392b; margin-top: 0; }
+
+        .vignette-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; }
+        .vignette-table th, .vignette-table td { padding: 15px; border: 1px solid #eee; text-align: left; }
+        .vignette-table th { background: #f9f9f9; font-weight: 700; color: #d35400; }
+
+        .details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
+        .detail-box { background: #f9f9f9; padding: 20px; border-radius: 15px; border: 1px solid #eee; }
+        .detail-box b { display: block; color: #d35400; margin-bottom: 5px; text-transform: uppercase; font-size: 0.8rem; }
+
+        .sos-bar { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .sos-card { background: #d35400; color: white; padding: 15px 25px; border-radius: 12px; flex: 1; min-width: 120px; text-align: center; }
+        .sos-card span { display: block; font-size: 1.5rem; font-weight: 800; }
+
+        .photo-divider { height: 300px; background-size: cover; background-position: center; background-attachment: fixed; margin: 60px 0; border-radius: 25px; box-shadow: inset 0 0 100px rgba(0,0,0,0.5); }
+
+        .action-block-advice { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('tour9.jpg'); background-size: cover; background-position: center; padding: 100px 0; text-align: center; color: white; border-radius: 25px; margin-bottom: 40px; }
+        .btn-action.main { color: white; padding: 18px 45px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; transition: 0.3s; }
+        .btn-action.main:hover { opacity: 0.9; transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .hero-advice h1 { font-size: 2.2rem; }
+            .info-section { padding: 25px; }
+            .photo-divider { height: 200px; background-attachment: scroll; }
+        }
+        /* ОБНОВЛЕННЫЙ ПОДВАЛ */
+footer { background: #121212; color: #fff; padding: 60px 0 20px; border-top: 1px solid rgba(211, 84, 0, 0.3); margin-top: 80px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-logo h3 { color: #d35400; margin: 0 0 15px; font-size: 1.8rem; font-weight: 800; letter-spacing: 2px; }
+.footer-logo p { color: #999; max-width: 350px; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
+.footer-links h4, .footer-contact h4 { margin-bottom: 20px; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #fff; }
+.footer-links a { display: block; color: #bbb; text-decoration: none; margin-bottom: 10px; transition: 0.3s; font-size: 0.95rem; }
+.footer-links a:hover { color: #d35400; padding-left: 5px; }
+.footer-bottom { border-top: 1px solid #222; padding-top: 20px; text-align: center; color: #555; font-size: 0.8rem; }
+
+/* ЦВЕТНЫЕ СОЦСЕТИ */
+.soc-link { text-decoration: none; border: 2px solid #d35400; padding: 8px 18px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; transition: 0.3s; display: inline-block; color: #d35400; }
+.soc-link:hover { background: #d35400; color: #fff; }
+.btn-fb { color: #1877F2 !important; border-color: #1877F2 !important; }
+.btn-fb:hover { background: #1877F2 !important; color: #fff !important; }
+.btn-tg { color: #24A1DE !important; border-color: #24A1DE !important; }
+.btn-tg:hover { background: #24A1DE !important; color: #fff !important; }
+.btn-wa { color: #25D366 !important; border-color: #25D366 !important; }
+.btn-wa:hover { background: #25D366 !important; color: #fff !important; }
+
+@media (max-width: 768px) {
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .social-bar { justify-content: center; }
+}
+    </style>
+</head>
+<body>
+
+<div class="nav-bar">
+    <div class="container">
+        <div class="nav-left"></div> 
+        <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" id="nav-home-btn">На главную</a>
+            <a href="about.html" id="nav-about-btn">О Приднестровье</a>
+            <div class="lang-switch">
+                <a href="javascript:void(0)" onclick="changeLang('ru')">RU</a>
+                <a href="javascript:void(0)" onclick="changeLang('en')">EN</a>
+                <a href="javascript:void(0)" onclick="changeLang('ro')">RO</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header class="hero-advice">
+    <div class="container">
+        <h1 id="hero-title">Советы путешественникам</h1>
+        <p id="hero-sub">Правила въезда, пребывания и полезная информация о Приднестровье</p>
+    </div>
+</header>
+
+<div class="container">
+
+    <section class="info-section">
+        <h2 id="border-t">Порядок пересечения границы</h2>
+        <p id="border-p1">Для въезда на территорию Приднестровской Молдавской Республики <b>не требуется</b> тест на COVID-19 и сертификат о вакцинации. Открытие визы также не требуется.</p>
+        <p id="border-p2">Въезд и выезд возможен по документам, удостоверяющим личность: заграничный паспорт, внутренний паспорт или ID-карта.</p>
+        
+        <div class="important-note" style="background: #eef9ff; border-color: #3498db; color: #2c3e50;" id="mig-card">
+            <b>Миграционная карта:</b> Вы обязаны получить её при въезде, сообщив адрес пребывания и срок нахождения. Она выдается <b>бесплатно</b> на срок до 45 суток. Продлевать её можно неоднократно в паспортном отделе.
+        </div>
+
+        <p id="border-no-mig"><b>Кому не нужно заполнять карту:</b><br>
+        — Лицам с действующим видом на жительство или разрешением на проживание в ПМР;<br>
+        — Официальным лицам по приглашению МИД ПМР.</p>
+        
+        <p id="border-warn"><i>Важно: Для въезда необходим транзит через Молдову. Уточняйте порядок въезда в сопредельные государства заранее.</i></p>
+    </section>
+
+    <div class="photo-divider" style="background-image: url('tour6.jpg');"></div>
+
+    <section class="important-note">
+        <h3 id="warn-t">⚠️ Важное предупреждение!</h3>
+        <p id="warn-p1">Использование наименования <b>«Транснистрия» (Transnistria)</b> на территории республики абсолютно неприемлемо. Этот термин ассоциируется с годами румынской оккупации, этническими чистками и трагедией Великой Отечественной войны.</p>
+        <p id="warn-p2">Использование этого слова сегодня воспринимается как неуважение к истории и жертвам тех событий. В Приднестровье принят законодательный <b>запрет</b> на использование этого термина по отношению к республике.</p>
+        <p id="warn-p3">По-английски следует писать: <b>Pridnestrovian Moldavian Republic</b> или <b>Pridnestrovie</b>.</p>
+    </section>
+
+    <div class="photo-divider" style="background-image: url('tour4.jpg');"></div>
+
+    <section class="info-section">
+        <h2 id="life-t">Валюта, связь и быт</h2>
+        <div class="details-grid">
+            <div class="detail-box">
+                <b id="det-cur-t">Валюта</b>
+                <span id="det-cur-d">Официальная валюта — приднестровский рубль. Рассчитаться можно только им. Обменять валюту можно в любом обменном пункте. <b>Ехать лучше с наличными.</b></span>
+            </div>
+            <div class="detail-box">
+                <b id="det-tel-t">Связь</b>
+                <span id="det-tel-d">Стандарты: CDMA, LTE и GSM. Для подключения местной связи необходим телефон с поддержкой <b>VoLTE (LTE B20)</b>. Оператор — IDC.</span>
+            </div>
+            <div class="detail-box">
+                <b id="det-lang-t">Язык</b>
+                <span id="det-lang-d">Три официальных языка: русский, молдавский, украинский. В городах для повседневного общения используется русский язык.</span>
+            </div>
+            <div class="detail-box">
+                <b id="det-el-t">Электричество</b>
+                <span id="det-el-d">Стандартная сеть 220 В.</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h2 id="trans-t">Общественный транспорт</h2>
+        <p id="trans-p1">В республике развита сеть троллейбусов, автобусов и маршрутных такси. Есть службы такси (заказ по телефону или через приложения).</p>
+        <p id="trans-p2"><b>Оплата:</b> Билеты на межгород покупаются в кассах автовокзалов. В городском транспорте оплата производится водителю или контроллеру при посадке.</p>
+    </section>
+
+    <div class="photo-divider" style="background-image: url('tour7.jpg');"></div>
+
+    <section class="info-section">
+        <h2 id="car-t">Для владельцев иностранных авто</h2>
+        <p id="car-p1">Временный ввоз авто осуществляется в упрощенном порядке без декларации при условии уплаты <b>сбора-виньетки</b>.</p>
+        <p id="car-p2"><b>Документы:</b> Паспорт, техпаспорт авто, доверенность и подтверждение адреса пребывания в ПМР.</p>
+        
+        <table class="vignette-table">
+            <thead>
+                <tr>
+                    <th id="th-term">Срок ввоза</th>
+                    <th id="th-rate">Ставка сбора</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td id="td-7d">7 дней</td><td>$5</td></tr>
+                <tr><td id="td-15d">15 дней</td><td>$10</td></tr>
+                <tr><td id="td-30d">30 дней</td><td>$15</td></tr>
+                <tr><td id="td-90d">90 дней</td><td>$25</td></tr>
+                <tr><td id="td-180d">180 дней</td><td>$45</td></tr>
+                <tr><td id="td-365d">365 дней (макс)</td><td>$80</td></tr>
+            </tbody>
+        </table>
+        <p id="car-note"><small>* Граждане СНГ на автомобилях из стран СНГ освобождены от уплаты виньетки.</small></p>
+    </section>
+
+    <section class="info-section">
+        <h2 id="sos-t">Экстренные службы</h2>
+        <div class="sos-bar">
+            <div class="sos-card"><span id="sos-1">101</span><span id="sos-1-n">Пожарные</span></div>
+            <div class="sos-card"><span id="sos-2">102</span><span id="sos-2-n">Милиция</span></div>
+            <div class="sos-card"><span id="sos-3">103</span><span id="sos-3-n">Скорая</span></div>
+            <div class="sos-card"><span id="sos-4">199</span><span id="sos-4-n">Справка</span></div>
+        </div>
+    </section>
+
+    <div class="photo-divider" style="background-image: url('tour8.jpg'); margin-bottom: 60px;"></div>
+
+    <section class="action-block-advice">
+        <div class="container">
+            <h2 id="act-t">Остались вопросы по поездке?</h2>
+            <p id="act-p">Напишите мне лично в <b>Telegram</b> или <b>WhatsApp</b> — я помогу разобраться со всеми нюансами.</p>
+            
+            <div style="margin-top: 35px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://t.me/Igorboaghi" target="_blank" class="btn-action main" style="background: #24A1DE;" id="act-tg">Написать в Telegram</a>
+                <a href="https://wa.me/37377727035" target="_blank" class="btn-action main" style="background: #25D366;" id="act-wa">Написать в WhatsApp</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    const data = {
+        ru: {
+            navHome: "На главную",
+            aboutBtn: "О Приднестровье",
+            heroTitle: "Советы путешественникам",
+            heroSub: "Правила въезда, пребывания и полезная информация о Приднестровье",
+            borderT: "Порядок пересечения границы",
+            borderP1: "Для въезда на территорию Приднестровской Молдавской Республики не требуется тест на COVID-19 и сертификат о вакцинации. Открытие визы также не требуется.",
+            borderP2: "Въезд и выезд возможен по документам, удостоверяющим личность: заграничный паспорт, внутренний паспорт или ID-карта.",
+            migCard: "<b>Миграционная карта:</b> Вы обязаны получить её при въезде, сообщив адрес пребывания и срок нахождения. Она выдается <b>бесплатно</b> на срок до 45 суток. Продлевать её можно неоднократно в паспортном отделе.",
+            borderNoMig: "<b>Кому не нужно заполнять карту:</b><br>— Лицам с действующим видом на жительство в ПМР;<br>— Официальным лицам по приглашению МИД ПМР.",
+            borderWarn: "<i>Важно: Для въезда необходим транзит через Молдову. Уточняйте порядок въезда в сопредельные государства заранее.</i>",
+            warnT: "⚠️ Важное предупреждение!",
+            warnP1: "Использование наименования <b>«Транснистрия» (Transnistria)</b> на территории республики абсолютно неприемлемо. Этот термин ассоциируется с годами оккупации и трагедией войны.",
+            warnP2: "Использование этого слова сегодня воспринимается как неуважение к истории. В Приднестровье принят законодательный <b>запрет</b> на использование этого термина.",
+            warnP3: "По-английски следует писать: <b>Pridnestrovian Moldavian Republic</b> или <b>Pridnestrovie</b>.",
+            lifeT: "Валюта, связь и быт",
+            detCurT: "Валюта", detCurD: "Официальная валюта — приднестровский рубль. Рассчитаться можно только им. <b>Ехать лучше с наличными.</b>",
+            detTelT: "Связь", detTelD: "Стандарты: CDMA, LTE и GSM. Необходим телефон с поддержкой VoLTE (B20). Оператор — IDC.",
+            detLangT: "Язык", detLangD: "Три официальных языка: русский, молдавский, украинский. В городах используется русский.",
+            detElT: "Электричество", detElD: "Стандартная сеть 220 В.",
+            transT: "Общественный транспорт",
+            transP1: "В республике развита сеть троллейбусов, автобусов и маршрутных такси. Есть службы такси (заказ по телефону или через приложения).",
+            transP2: "<b>Оплата:</b> Билеты на межгород покупаются в кассах. В городском транспорте оплата при посадке.",
+            carT: "Для владельцев иностранных авто",
+            carP1: "Временный ввоз авто осуществляется в упрощенном порядке при условии уплаты <b>сбора-виньетки</b>.",
+            carP2: "<b>Документы:</b> Паспорт, техпаспорт авто, доверенность и подтверждение адреса в ПМР.",
+            thTerm: "Срок ввоза", thRate: "Ставка сбора",
+            td7d: "7 дней", td15d: "15 дней", td30d: "30 дней", td90d: "90 дней", td180d: "180 дней", td365d: "365 дней (макс)",
+            carNote: "* Граждане СНГ на автомобилях из стран СНГ освобождены от уплаты виньетки.",
+            sosT: "Экстренные службы",
+            sos1n: "Пожарные", sos2n: "Милиция", sos3n: "Скорая", sos4n: "Справка",
+            actT: "Остались вопросы по поездке?",
+            actP: "Напишите мне лично в <b>Telegram</b> или <b>WhatsApp</b> — я помогу разобраться со всеми нюансами.",
+            actTg: "Написать в Telegram", actWa: "Написать в WhatsApp",
+            fDesc: "Соберите своё путешествие в Pridnestrovie",
+            fNavT: "Навигация", fN1: "Главная страница", fN2: "Полезные советы", fN3: "О Приднестровье", fConT: "Контакты", fCopy: "Путешествуй с душой. Все права защищены."
+        },
+        en: {
+            navHome: "Home Page",
+            aboutBtn: "About Region",
+            heroTitle: "Travel Advice",
+            heroSub: "Entry rules, stay requirements, and useful information about Pridnestrovie",
+            borderT: "Border Crossing Procedure",
+            borderP1: "COVID-19 tests and vaccination certificates are not required to enter Pridnestrovie. No visa is needed for most visitors.",
+            borderP2: "Entry/exit is possible with identity documents: foreign passport, internal passport, or ID card.",
+            migCard: "<b>Migration Card:</b> You must obtain it upon entry by stating your address and duration of stay. It is <b>free</b> and valid for up to 45 days. Extensions are possible at passport offices.",
+            borderNoMig: "<b>Who doesn't need a card:</b><br>— Persons with a valid PMR residence permit;<br>— Official persons invited by the PMR Ministry of Foreign Affairs.",
+            borderWarn: "<i>Important: Transit through Moldova is required. Check Moldova's entry rules in advance.</i>",
+            warnT: "⚠️ Important Warning!",
+            warnP1: "Using the name <b>'Transnistria'</b> is unacceptable in the republic. This term is associated with the years of occupation and the tragedy of war.",
+            warnP2: "Using this word today is seen as disrespect to history. There is a legislative <b>ban</b> on using this term in relation to the republic.",
+            warnP3: "In English, you should write: <b>Pridnestrovian Moldavian Republic</b> or <b>Pridnestrovie</b>.",
+            lifeT: "Currency, Connectivity & Daily Life",
+            detCurT: "Currency", detCurD: "The official currency is the Pridnestrovian ruble. Payments are only in rubles. <b>Cash is highly recommended.</b>",
+            detTelT: "Connectivity", detTelD: "Standards: CDMA, LTE, and GSM. Requires a phone with VoLTE support (B20). Operator — IDC.",
+            detLangT: "Language", detLangD: "Three official languages: Russian, Moldovan, Ukrainian. Russian is the main language in cities.",
+            detElT: "Electricity", detElD: "Standard 220V power grid.",
+            transT: "Public Transport",
+            transP1: "There is a developed network of trolleybuses, buses, and minibuses. Taxi services are available via phone or apps.",
+            transP2: "<b>Payment:</b> Intercity tickets are bought at stations. City transport is paid upon boarding.",
+            carT: "For Foreign Car Owners",
+            carP1: "Temporary car import is simplified subject to payment of the <b>vignette fee</b>.",
+            carP2: "<b>Documents:</b> Passport, car registration, power of attorney, and address in PMR.",
+            thTerm: "Import Term", thRate: "Fee Rate",
+            td7d: "7 days", td15d: "15 days", td30d: "30 days", td90d: "90 days", td180d: "180 days", td365d: "365 days (max)",
+            carNote: "* CIS citizens with CIS-registered cars are exempt from the vignette fee.",
+            sosT: "Emergency Services",
+            sos1n: "Fire Service", sos2n: "Police", sos3n: "Ambulance", sos4n: "Inquiry",
+            actT: "Still have questions?",
+            actP: "Write to me personally on <b>Telegram</b> or <b>WhatsApp</b> — I will help with all the details.",
+            actTg: "Message on Telegram", actWa: "Message on WhatsApp",
+            fDesc: "Build your journey to Pridnestrovie",
+            fNavT: "Navigation", fN1: "Home Page", fN2: "Practical Advice", fN3: "About Pridnestrovie", fConT: "Contacts", fCopy: "Travel with soul. All rights reserved."
+        },
+        ro: {
+            navHome: "Pagina Principală",
+            aboutBtn: "Despre Pridnestrovie",
+            heroTitle: "Sfaturi pentru călători",
+            heroSub: "Reguli de intrare, ședere și informații utile despre Pridnestrovie",
+            borderT: "Procedura de trecere a frontierei",
+            borderP1: "Pentru intrarea în Pridnestrovie nu este necesar testul COVID-19 sau certificatul de vaccinare. Nu este necesară viză.",
+            borderP2: "Intrarea/ieșirea este posibilă cu documente de identitate: pașaport străin, pașaport intern sau buletin (ID card).",
+            migCard: "<b>Cardul de migrare:</b> Sunteți obligat să îl obțineți la intrare, declarând adresa și durata șederii. Este <b>gratuit</b> și valabil până la 45 de zile. Prelungirea este posibilă la secțiile de pașapoarte.",
+            borderNoMig: "<b>Cine nu are nevoie de card:</b><br>— Persoanele cu permis de ședere valabil în RMN;<br>— Persoanele oficiale invitate de MAE al RMN.",
+            borderWarn: "<i>Important: Tranzitul prin Moldova este necesar. Verificați regulile de intrare în Moldova în prealabil.</i>",
+            warnT: "⚠️ Avertisment important!",
+            warnP1: "Utilizarea denumirii <b>„Transnistria”</b> este inacceptabilă în republică. Acest termen este asociat cu anii de ocupație și tragedia războiului.",
+            warnP2: "Utilizarea acestui cuvânt este considerată o lipsă de respect față de istorie. Există o <b>interdicție</b> legislativă privind utilizarea acestui termen.",
+            warnP3: "În engleză trebuie să scrieți: <b>Pridnestrovian Moldavian Republic</b> sau <b>Pridnestrovie</b>.",
+            lifeT: "Valută, comunicații și viața de zi cu zi",
+            detCurT: "Valută", detCurD: "Moneda oficială este rubla transnistreană. Plățile se fac doar în ruble. <b>Se recomandă numerarul.</b>",
+            detTelT: "Comunicații", detTelD: "Standarde: CDMA, LTE și GSM. Necesită telefon cu suport VoLTE (B20). Operator — IDC.",
+            detLangT: "Limba", detLangD: "Trei limbi oficiale: rusă, moldovenească, ucraineană. Rusa este limba principală în orașe.",
+            detElT: "Electricitate", detElD: "Rețea standard de 220V.",
+            transT: "Transport public",
+            transP1: "Există o rețea dezvoltată de troleibuze, autobuze și microbuze. Serviciile de taxi sunt disponibile prin telefon sau aplicații.",
+            transP2: "<b>Plată:</b> Biletele interurbane se cumpără la autogări. Transportul urban se plătește la urcare.",
+            carT: "Pentru proprietarii de mașini străine",
+            carP1: "Importul temporar de mașini este simplificat cu condiția plății <b>taxei de vinietă</b>.",
+            carP2: "<b>Documente:</b> Pașaport, talonul mașinii, procură și confirmarea adresei în RMN.",
+            thTerm: "Termen import", thRate: "Taxa",
+            td7d: "7 zile", td15d: "15 zile", td30d: "30 zile", td90d: "90 zile", td180d: "180 zile", td365d: "365 zile (max)",
+            carNote: "* Cetățenii CSI cu mașini înmatriculate în CSI sunt scutiți de plata vinietei.",
+            sosT: "Servicii de urgență",
+            sos1n: "Pompieri", sos2n: "Miliția", sos3n: "Salvarea", sos4n: "Informații",
+            actT: "Aveți întrebări despre călătorie?",
+            actP: "Scrieți-mi personal pe <b>Telegram</b> sau <b>WhatsApp</b> — vă voi ajuta cu toate detaliile.",
+            actTg: "Mesaj pe Telegram", actWa: "Mesaj pe WhatsApp",
+            fDesc: "Creează-ți propria călătorie în Pridnestrovie",
+            fNavT: "Navigație", fN1: "Pagina Principală", fN2: "Sfaturi Practice", fN3: "Despre Pridnestrovie", fConT: "Contacte", fCopy: "Călătorește cu suflet. Toate drepturile rezervate."
+        }
+    };
+
+    function changeLang(lang) {
+        const l = data[lang];
+        if(!l) return;
+        
+        // Кнопки шапки
+        const homeBtn = document.getElementById('nav-home-btn');
+        if(homeBtn) homeBtn.innerText = l.navHome;
+        const aboutBtn = document.getElementById('nav-about-btn');
+        if(aboutBtn) aboutBtn.innerText = l.aboutBtn;
+
+        // Твой основной контент (сохраняем без изменений)
+        document.getElementById('hero-title').innerText = l.heroTitle;
+        document.getElementById('hero-sub').innerText = l.heroSub;
+        document.getElementById('border-t').innerText = l.borderT;
+        document.getElementById('border-p1').innerText = l.borderP1;
+        document.getElementById('border-p2').innerText = l.borderP2;
+        document.getElementById('mig-card').innerHTML = l.migCard;
+        document.getElementById('border-no-mig').innerHTML = l.borderNoMig;
+        document.getElementById('border-warn').innerHTML = l.borderWarn;
+        document.getElementById('warn-t').innerText = l.warnT;
+        document.getElementById('warn-p1').innerHTML = l.warnP1;
+        document.getElementById('warn-p2').innerHTML = l.warnP2;
+        document.getElementById('warn-p3').innerHTML = l.warnP3;
+        document.getElementById('life-t').innerText = l.lifeT;
+        document.getElementById('det-cur-t').innerText = l.detCurT;
+        document.getElementById('det-cur-d').innerHTML = l.detCurD;
+        document.getElementById('det-tel-t').innerText = l.detTelT;
+        document.getElementById('det-tel-d').innerHTML = l.detTelD;
+        document.getElementById('det-lang-t').innerText = l.detLangT;
+        document.getElementById('det-lang-d').innerHTML = l.detLangD;
+        document.getElementById('det-el-t').innerText = l.detElT;
+        document.getElementById('det-el-d').innerHTML = l.detElD;
+        document.getElementById('trans-t').innerText = l.transT;
+        document.getElementById('trans-p1').innerText = l.transP1;
+        document.getElementById('trans-p2').innerHTML = l.transP2;
+        document.getElementById('car-t').innerText = l.carT;
+        document.getElementById('car-p1').innerHTML = l.carP1;
+        document.getElementById('car-p2').innerHTML = l.carP2;
+        document.getElementById('th-term').innerText = l.thTerm;
+        document.getElementById('th-rate').innerText = l.thRate;
+        document.getElementById('td-7d').innerText = l.td7d;
+        document.getElementById('td-15d').innerText = l.td15d;
+        document.getElementById('td-30d').innerText = l.td30d;
+        document.getElementById('td-90d').innerText = l.td90d;
+        document.getElementById('td-180d').innerText = l.td180d;
+        document.getElementById('td-365d').innerText = l.td365d;
+        document.getElementById('car-note').innerHTML = l.carNote;
+        document.getElementById('sos-t').innerText = l.sosT;
+        document.getElementById('sos-1-n').innerText = l.sos1n;
+        document.getElementById('sos-2-n').innerText = l.sos2n;
+        document.getElementById('sos-3-n').innerText = l.sos3n;
+        document.getElementById('sos-4-n').innerText = l.sos4n;
+        document.getElementById('act-t').innerText = l.actT;
+        document.getElementById('act-p').innerHTML = l.actP;
+        document.getElementById('act-tg').innerText = l.actTg;
+        document.getElementById('act-wa').innerText = l.actWa;
+
+        // Перевод подвала (ДОБАВЛЕНО)
+        document.getElementById('f-desc').innerText = l.fDesc;
+        document.getElementById('f-nav-t').innerText = l.fNavT;
+        document.getElementById('f-n1').innerText = l.fN1;
+        document.getElementById('f-n2').innerText = l.fN2;
+        document.getElementById('f-n3').innerText = l.fN3;
+        document.getElementById('f-con-t').innerText = l.fConT;
+        document.getElementById('f-copy').innerText = l.fCopy;
+        localStorage.setItem('selectedLang', lang);
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+    // Проверяем, есть ли сохраненный язык в памяти
+    const savedLang = localStorage.getItem('selectedLang');
+    
+    // Если есть — включаем его, если нет — оставляем русский (по умолчанию)
+    if (savedLang) {
+        changeLang(savedLang);
+    } else {
+        changeLang('ru');
+    }
+});
+</script>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h3>HI-TRAIL</h3>
+                <p id="f-desc">Соберите своё путешествие в Pridnestrovie</p>
+                <div class="social-bar" style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <a href="https://www.instagram.com/igor.boaghi/" target="_blank" class="soc-link">INSTAGRAM</a>
+                    <a href="https://www.facebook.com/igor.boaghi" target="_blank" class="soc-link btn-fb">FACEBOOK</a>
+                </div>
+                <div class="social-bar" style="display: flex; gap: 10px;">
+                    <a href="https://t.me/Igorboaghi" target="_blank" class="soc-link btn-tg">TELEGRAM</a>
+                    <a href="https://wa.me/37377727035" target="_blank" class="soc-link btn-wa">WHATSAPP</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4 id="f-nav-t">Навигация</h4>
+                <a href="index.html" id="f-n1">Главная страница</a>
+                <a href="advice.html" id="f-n2">Полезные советы</a>
+                <a href="about.html" id="f-n3">О Приднестровье</a>
+            </div>
+            <div class="footer-contact">
+                <h4 id="f-con-t">Контакты</h4>
+                <p>📞 +373 (777) 27-035</p>
+                <p>✉️ igor.boaghi@gmail.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 HI-TRAIL. <span id="f-copy">Путешествуй с душой.</span></p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
+

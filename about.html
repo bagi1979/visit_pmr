@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О Приднестровье | Hi-Trail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <style>
+    /* БАЗОВЫЕ НАСТРОЙКИ */
+    body {  font-family: 'Montserrat', sans-serif; margin: 0; color: #333; line-height: 1.6; background-color: #fdfaf5; padding-top: 80px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    /* НАВИГАЦИЯ */
+    .nav-bar { position: fixed; top: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); padding: 15px 0; z-index: 1000; }
+    .nav-bar .container { display: flex; justify-content: space-between; align-items: center; }
+    .nav-right { display: flex; align-items: center; gap: 15px; }
+    .back-btn { color: white; text-decoration: none; font-weight: 700; border: 1px solid #d35400; padding: 8px 20px; border-radius: 6px; transition: 0.3s; font-size: 0.9rem; }
+    .back-btn:hover { background: #d35400; }
+    .lang-switch a { color: white; text-decoration: none;  margin-left: 10px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; border-radius: 4px; transition: 0.3s; }
+    .lang-switch a:hover { background: #d35400;  border-color: #d35400; }
+
+    /* HERO СЕКЦИЯ */
+    .hero-about { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('tour13.jpg'); background-size: cover; background-position: center; height: 450px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; border-radius: 0 0 40px 40px; margin-bottom: 60px; }
+    .hero-about h1 { font-size: 3.5rem; font-weight: 800; margin: 0; letter-spacing: 4px; }
+
+    /* КОНТЕНТНЫЕ БЛОКИ */
+    .info-block { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;  margin-bottom: 100px; }
+    .info-block img {  width: 100%; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+    h2 { color: #d35400; font-size: 2.2rem; margin-top: 0; }
+    .map-pmr-img { display: block; width: 100%;  max-width: 500px; margin: 40px auto; border-radius: 20px; }
+
+    /* СЕКЦИЯ ГОРОДОВ */
+    .city-section { background: white;  padding: 80px 0; border-radius: 40px; margin-bottom: 40px; } 
+    .city-card { margin-bottom: 80px; border-bottom: 1px solid #f0f0f0; padding-bottom: 60px; }
+    .city-card:last-child { border: none; }
+    .city-card h3 { font-size: 1.8rem; color: #1a1a1a; margin-bottom: 15px; }
+    .city-card p { color: #666; font-size: 1.05rem; max-width: 800px; }
+    .map-box { width: 100%; height: 400px; border-radius: 20px; overflow: hidden; margin-top: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    iframe {  width: 100%; height: 100%; border: none; }
+
+    /* ПОДВАЛ (FOOTER) */
+    footer { background: #121212; color: #fff; padding: 40px 0 20px; border-top: 1px solid rgba(211, 84, 0, 0.3); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+    .footer-logo h3 { color: #d35400; margin: 0 0 15px; font-size: 1.8rem; font-weight: 800; letter-spacing: 2px; }
+    .footer-logo p { color: #999; max-width: 350px; font-size: 0.95rem; line-height: 1.6; }
+    .footer-links h4, .footer-contact h4 { margin-bottom: 15px; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; color: #fff; }
+    .footer-links a { display: block; color: #bbb; text-decoration: none; margin-bottom: 8px; transition: 0.3s; font-size: 0.9rem;  }
+    .footer-links a:hover { color: #d35400; padding-left: 5px; }
+    .footer-contact p {  color: #bbb; margin-bottom: 8px; font-size: 0.9rem; }
+    .footer-bottom { border-top: 1px solid #222; padding-top: 20px; text-align: center; color: #555; font-size: 0.8rem; }
+
+    /* КНОПКИ СОЦСЕТЕЙ */
+    .soc-link { color: #d35400; text-decoration: none; border: 2px solid #d35400; padding: 6px 15px; border-radius: 8px; font-size: 0.75rem; font-weight: 800; transition: 0.3s; display: inline-block; margin-top: 10px; }
+    .soc-link:hover { background: #d35400; color: #fff; }
+
+    /* БРЕНДОВЫЕ ЦВЕТА */
+    .btn-tg { color: #24A1DE !important; border-color: #24A1DE !important; }
+    .btn-tg:hover { background: #24A1DE !important; color: #fff !important; }
+    .btn-wa { color: #25D366 !important; border-color: #25D366 !important; }
+    .btn-wa:hover { background: #25D366 !important; color: #fff !important; }
+    .btn-fb { color: #1877F2 !important; border-color: #1877F2 !important; }
+    .btn-fb:hover { background: #1877F2 !important; color: #fff !important; }
+
+    /* МОБИЛЬНАЯ АДАПТАЦИЯ */
+    @media (max-width: 768px) {
+        .hero-about h1 { font-size: 2.5rem; }
+        .info-block { grid-template-columns: 1fr; gap: 30px; }
+        footer { padding: 30px 0 20px; }
+        .footer-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+        .footer-logo p { margin: 0 auto; }
+        .social-bar { display: flex; justify-content: center; gap: 10px; }
+    }
+    #nav-advice-btn:hover { 
+    background: #d35400; 
+    border-color: #d35400; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(211, 84, 0, 0.4);
+}
+#nav-home-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+    transform: translateY(-2px);
+}
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+    <div class="container">
+        <div class="nav-left"></div> 
+
+        <div class="nav-right" style="display: flex; align-items: center; gap: 15px;">
+            <a href="index.html" id="nav-home-btn" style="color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.3); padding: 8px 15px; border-radius: 4px; transition: 0.3s; text-transform: uppercase;">На главную</a>
+
+            <a href="advice.html" id="nav-advice-btn" style="color: white; text-decoration: none; font-size: 0.75rem; font-weight: 700; border: 1px solid #d35400; padding: 8px 15px; border-radius: 4px; transition: 0.3s; text-transform: uppercase;">Полезные советы</a>
+
+            <div class="lang-switch">
+                <a href="javascript:void(0)" onclick="changeLang('ru')">RU</a>
+                <a href="javascript:void(0)" onclick="changeLang('en')">EN</a>
+                <a href="javascript:void(0)" onclick="changeLang('ro')">RO</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header class="hero-about">
+    <div class="container">
+        <h1 id="hero-title">Приднестровье</h1>
+        <p id="hero-sub" style="font-size: 1.2rem; opacity: 0.9;">Многогранный край с глубокой историей</p>
+    </div>
+</header>
+
+<div class="container">
+    <section class="info-block">
+        <div class="text-side">
+            <h2 id="nature-t">Природа и Климат</h2>
+            <p id="nature-p1">Регион отличается умеренно-континентальным климатом: мягкая зима, ранняя весна, жаркое лето и тёплая продолжительная осень. Природа разнообразна: от лесостепей севера («маленькая Швейцария» в Каменке) до золотых степей юга.</p>
+            <p id="nature-p2">Более 80% земель — плодородные чернозёмы. Благоприятный климат позволяет получать до двух урожаев в год и выращивать великолепный виноград.</p>
+        </div>
+        <img src="tour14.jpg" alt="Природа ПМР">
+    </section>
+
+    <section class="info-block" style="direction: rtl;">
+        <div class="text-side" style="direction: ltr;">
+            <h2 id="trad-t">Народные традиции</h2>
+            <p id="trad-p1">Здесь переплелись культуры более 75 национальностей. Это разнообразие отражается во всём: от ярких танцев и фольклора до уникальной кухни, сочетающей молдавские, украинские, болгарские и еврейские традиции.</p>
+            <p id="trad-p2">Главные символы гостеприимства — домашнее вино, мамалыга, плацинды и искренние улыбки местных жителей.</p>
+        </div>
+        <img src="tour15.jpg" alt="Традиции ПМР">
+    </section>
+
+    <section style="text-align: center; margin: 80px 0;">
+        <h2 id="geo-t">География Приднестровья</h2>
+        <img src="tour11.jpg" alt="Карта Приднестровья" class="map-pmr-img">
+    </section>
+
+    <div class="city-section">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 60px;" id="cities-main-t">Города и поселения</h2>
+
+        <div class="city-card">
+            <h3 id="tira-t">Город Тирасполь</h3>
+            <p id="tira-p">Столица основана А.В. Суворовым в 1792 году. Город возник как крепость Срединная на Днестровской линии. Главный архитектор плана города — Франц де Волан.</p>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d87027.61864190827!2d29.58434778135898!3d46.840428588523315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c90327f3118f9b%3A0x6739e1f5798939c0!2z0KLQuNGA0LDRgdC_0L7Qu9GMLCDQnNC-0LvQtNC-0LLQsA!5e0!3m2!1sru!2s!4v1714080000000!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="city-card">
+            <h3 id="bend-t">Город Бендеры</h3>
+            <p id="bend-p">Основан в 1408 году. Древний город на изгибе Днестра, через который проходили великие торговые пути. С историей города связаны имена Суворова, Пушкина и многих других.</p>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43529.7431267865!2d29.444983086438054!3d46.82245946115865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c904323630f9a9%3A0x4a4962b77a79e43d!2z0JHQtdC90LTQtdGA0YssINC80L7Qu9C00L7QstCw!5e0!3m2!1sru!2s!4v1714080100000!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="city-card">
+            <h3 id="slob-t">Город Слободзея</h3>
+            <p id="slob-p">Историческое место Черноморского казачьего войска. До 1793 года здесь находилась главная резиденция казачьего «Коша», ставшая подобием Сечи на Днестре.</p>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21798.54143441865!2d29.68953158087498!3d46.729053880628224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c9a924409ef96f%3A0xc6e4b85773199738!2z0KHQu9C-0LHQvtC00LfQtdGPLCDQnNC-0LvQtNC-0LLQsA!5e0!3m2!1sru!2s!4v1714080200000!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="city-card">
+            <h3 id="dubo-t">Город Дубоссары</h3>
+            <p id="dubo-p">Один из древнейших городов региона, упоминания о котором относятся к периоду монголо-татарского нашествия (XIII век).</p>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21703.11163459992!2d29.138814717140875!3d47.26514757398914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40cbd639695669b3%3A0x6d203874315668e1!2z0JTRg9Cx0L7RgdGB0LDRgNGL!5e0!3m2!1sru!2s!4v1714080300000!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="city-card">
+            <h3 id="grig-t">Город Григориополь</h3>
+            <p id="grig-p">Основан в 1792 году указом Екатерины II. Город задумывался как крупный торговый центр на месте армянской колонии.</p>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10892.686523955437!2d29.284485550293123!3d47.1475510624898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40cbd06497ec9585%3A0x4642929d28254c7d!2z0JPRgNC40LPQvtGA0LjQvtC_0L7Qu9GM!5e0!3m2!1sru!2s!4v1714080400000!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="city-card">
+            <h3 id="rybn-t">Город Рыбница</h3>
+            <p id="rybn-p">Известен с 1628 года. В разное время город входил в состав Киевской Руси, Великого княжества Литовского и Польского королевства.</p>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21495.688117769936!2d28.986877717466187!3d47.76288636402434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40cf093d5a4220b3%3A0xe54e176df91811e5!2z0KDRi9Cx0L3QuNGG0LA!5e0!3m2!1sru!2s!4v1714080500000!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="city-card">
+            <h3 id="kame-t">Город Каменка</h3>
+            <p id="kame-p">Самый северный город, богатый живописными ландшафтами отрогов Карпат. Известен своими лечебными традициями и уникальной природой.</p>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10668.740879555122!2d28.69460292523296!3d48.02844510168393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40cf77864c8d5069%3A0xd63297a7e8020e8b!2z0JrQsNC80LXQvdC60LA!5e0!3m2!1sru!2s!4v1714080600000!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <div class="city-card">
+            <h3 id="dnes-t">Город Днестровск</h3>
+            <p id="dnes-p">Основан в 1961 году как «город энергетиков». Расположен у Молдавской ГРЭС на берегу лимана, где когда-то селились беглые крепостные.</p>
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11011.66698656606!2d29.897370849313655!3d46.6185202611397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c997381275990b%3A0xc3f7a634458f3310!2z0JTQvdC10YHRgtGA0L7QstGB0LosINC80L7Qu9C00L7QstCw!5e0!3m2!1sru!2s!4v1714080700000!5m2!1sru!2s" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-logo">
+                <h3>HI-TRAIL</h3>
+                <p id="f-desc">Соберите своё путешествие в Pridnestrovie</p>
+                
+                <div class="social-bar" style="display: flex; gap: 10px; margin-bottom: 10px;">
+    <a href="https://www.instagram.com/igor.boaghi/" target="_blank" class="soc-link">INSTAGRAM</a>
+    <a href="https://www.facebook.com/igor.boaghi" target="_blank" class="soc-link btn-fb">FACEBOOK</a>
+</div>
+
+<div class="social-bar" style="display: flex; gap: 10px;">
+    <a href="https://t.me/Igorboaghi" target="_blank" class="soc-link btn-tg">TELEGRAM</a>
+    <a href="https://wa.me/37377727035" target="_blank" class="soc-link btn-wa">WHATSAPP</a>
+</div>
+            </div>
+
+            <div class="footer-links">
+                <h4 id="f-nav-t">Навигация</h4>
+                <a href="index.html" id="f-n1">Главная страница</a>
+                <a href="advice.html" id="f-n2">Полезные советы</a>
+                <a href="about.html" id="f-n3">О Приднестровье</a>
+            </div>
+
+            <div class="footer-contact">
+                <h4 id="f-con-t">Контакты</h4>
+                <p>📞 +373 (777) 27-035</p>
+                <p>✉️ igor.boaghi@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 HI-TRAIL. <span id="f-copy">Путешествуй с душой.</span></p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const data = {
+        ru: {
+            navHome: "На главную",
+            heroTitle: "Приднестровье", heroSub: "Многогранный край с глубокой историей",
+            natureT: "Природа и Климат",
+            natureP1: "Регион отличается умеренно-континентальным климатом: мягкая зима, ранняя весна, жаркое лето и тёплая продолжительная осень. Природа разнообразна: от лесостепей севера до золотых степей юга.",
+            natureP2: "Более 80% земель — плодородные чернозёмы. Благоприятный климат позволяет получать до двух урожаев в год и выращивать великолепный виноград.",
+            tradT: "Народные традиции",
+            tradP1: "Здесь переплелись культуры более 75 национальностей. Это разнообразие отражается во всём: от ярких танцев до уникальной кухни.",
+            tradP2: "Главные символы гостеприимства — домашнее вино, мамалыга, плацинды и искренние улыбки местных жителей.",
+            geoT: "География Приднестровья",
+            citiesMainT: "Города и поселения",
+            tiraT: "Город Тирасполь", tiraP: "Столица основана А.В. Суворовым в 1792 году. Город возник как крепость Срединная на Днестровской линии. Архитектор — Франц де Волан.",
+            bendT: "Город Бендеры", bendP: "Основан в 1408 году. Древний город на изгибе Днестра. С историей города связаны имена Суворова и Пушкина.",
+            slobT: "Город Слободзея", slobP: "Историческое место Черноморского казачьего войска. До 1793 года здесь находилась резиденция казачьего «Коша».",
+            grigT: "Город Григориополь", grigP: "Основан в 1792 году указом Екатерины II как торговый центр на месте армянской колонии.",
+            duboT: "Город Дубоссары", duboP: "Один из древнейших городов региона, упоминания о котором относятся к XIII веку.",
+            rybnT: "Город Рыбница", rybnP: "Известен с 1628 года. Входил в состав Киевской Руси и Польского королевства.",
+            kameT: "Город Каменка", kameP: "Самый северный город, богатый живописными ландшафтами отрогов Карпат и уникальной природой.",
+            dnesT: "Город Днестровск", dnesP: "Основан в 1961 году как «город энергетиков». Расположен у Молдавской ГРЭС на берегу лимана.",
+            // ПОДВАЛ RU
+            fDesc: "Соберите своё путешествие в Pridnestrovie",
+            fNavT: "Навигация", fN1: "Главная страница", fN2: "Полезные советы", fN3: "О Приднестровье", fConT: "Контакты", fCopy: "Путешествуй с душой. Все права защищены.",
+            advBtn: "Полезные советы"
+        },
+        en: {
+            navHome: "BACK TO HOME",
+            heroTitle: "Pridnestrovie", heroSub: "A diverse land with a deep history",
+            natureT: "Nature & Climate",
+            natureP1: "The region features a temperate continental climate: mild winters, early springs, hot summers, and long warm autumns. Nature varies from northern forest-steppes to southern golden steppes.",
+            natureP2: "Over 80% of the land consists of fertile chernozem. The favorable climate allows for two harvests per year and excellent grape growing.",
+            tradT: "Folk Traditions",
+            tradP1: "The cultures of over 75 nationalities intertwine here. This diversity is reflected in everything from vibrant dances to unique cuisine.",
+            tradP2: "The main symbols of hospitality are homemade wine, mamaliga, placintas, and the sincere smiles of the locals.",
+            geoT: "Geography of Pridnestrovie",
+            citiesMainT: "Cities & Settlements",
+            tiraT: "Tiraspol City", tiraP: "The capital was founded by A.V. Suvorov in 1792. It originated as the Sredinnaya fortress. Architect — Franz de Volán.",
+            bendT: "Bendery City", bendP: "Founded in 1408. An ancient city on the Dniester bend. Names like Suvorov and Pushkin are linked to its history.",
+            slobT: "Slobozia City", slobP: "Historical site of the Black Sea Cossack Army. Until 1793, the residence of the Cossack 'Kosh' was located here.",
+            grigT: "Grigoriopol City", grigP: "Founded in 1792 by decree of Catherine II as a trading center on the site of an Armenian colony.",
+            duboT: "Dubossary City", duboP: "One of the oldest cities in the region, with mentions dating back to the 13th century.",
+            rybnT: "Ribnita City", rybnP: "Known since 1628. It was part of Kievan Rus and the Kingdom of Poland.",
+            kameT: "Camenca City", kameP: "The northernmost city, rich in picturesque landscapes of the Carpathian foothills and unique nature.",
+            dnesT: "Dnestrovsc City", dnesP: "Founded in 1961 as a 'city of power engineers'. Located near the Moldavian GRES on the banks of a liman.",
+            // ПОДВАЛ EN
+            fDesc: "Build your journey to Pridnestrovie",
+            fNavT: "Navigation", fN1: "Home Page", fN2: "Practical Advice", fN3: "About Pridnestrovie", fConT: "Contacts", fCopy: "Travel with soul. All rights reserved.",
+            advBtn: "Practical Advice"
+        },
+        ro: {
+            navHome: "ÎNAPOI LA PAGINA PRINCIPALĂ",
+            heroTitle: "Pridnestrovie", heroSub: "Un ținut divers cu o istorie profundă",
+            natureT: "Natură și Climă",
+            natureP1: "Regiunea are un climat temperat-continental: ierni blânde, primăveri timpurii, veri fierbinți și toamne lungi. Natura variază de la silvostepele din nord la stepele aurii din sud.",
+            natureP2: "Peste 80% din pământ sunt cernoziomuri fertile. Climatul favorabil permite obținerea a două recolte pe an și cultivarea strugurilor excelenți.",
+            tradT: "Tradiții Populare",
+            tradP1: "Aici s-au împletit culturile a peste 75 de naționalități. Această diversitate se reflectă în tot: de la dansuri vibrante la bucătăria unică.",
+            tradP2: "Principalele simboluri ale ospitalității sunt vinul de casă, mămăliga, plăcintele și zâmbetele sincere ale localnicilor.",
+            geoT: "Geografia regiunii",
+            citiesMainT: "Orașe și Localități",
+            tiraT: "Orașul Tiraspol", tiraP: "Capitala a fost fondată de A.V. Suvorov în 1792. Orașul a apărut ca cetatea Sredinnaya. Arhitect — Franz de Volán.",
+            bendT: "Orașul Bender", bendP: "Fondat în 1408. Un oraș antic pe cotul Nistrului. Numele lui Suvorov și Pușkin sunt legate de istoria sa.",
+            slobT: "Orașul Slobozia", slobP: "Locul istoric al Armatei Cazacilor de la Marea Neagră. Până în 1793, aici a fost reședința 'Coșului' căzăcesc.",
+            grigT: "Orașul Grigoriopol", grigP: "Fondat în 1792 prin decretul Ecaterinei a II-a ca centru comercial pe locul unei colonii armenești.",
+            duboT: "Orașul Dubăsari", duboP: "Unul dintre cele mai vechi orașe din regiune, cu mențiuni care datează din secolul al XIII-lea.",
+            rybnT: "Orașul Rîbnița", rybnP: "Cunoscut din 1628. A făcut parte din Rusia Kieveană și Regatul Poloniei.",
+            kameT: "Orașul Camenca", kameP: "Cel mai nordic oraș, bogat în peisaje pitorești ale poalelor Carpaților și natură unică.",
+            dnesT: "Orașul Dnestrovsc", dnesP: "Fondat în 1961 ca 'oraș al energeticianului'. Situat lângă Centrala de la Cuciurgan.",
+            // ПОДВАЛ RO
+            fDesc: "Creează-ți propria călătorie în Pridnestrovie",
+            fNavT: "Navigație", fN1: "Pagina Principală", fN2: "Sfaturi Practice", fN3: "Despre Pridnestrovie", fConT: "Contacte", fCopy: "Călătorește cu suflet. Toate drepturile rezervate.",
+            advBtn: "Sfaturi practice"
+        }
+    };
+
+    function changeLang(lang) {
+    const l = data[lang];
+    if(!l) return;
+    
+    // Исправлено: обращаемся к новому ID кнопки "На главную"
+    const homeBtn = document.getElementById('nav-home-btn');
+    if(homeBtn) { homeBtn.innerText = l.navHome; }
+
+    // Кнопка советов
+    const adviceBtn = document.getElementById('nav-advice-btn');
+    if(adviceBtn) adviceBtn.innerText = l.advBtn;
+
+    // Контент страницы
+    document.getElementById('hero-title').innerText = l.heroTitle;
+    document.getElementById('hero-sub').innerText = l.heroSub;
+    document.getElementById('nature-t').innerText = l.natureT;
+    document.getElementById('nature-p1').innerText = l.natureP1;
+    document.getElementById('nature-p2').innerText = l.natureP2;
+    document.getElementById('trad-t').innerText = l.tradT;
+    document.getElementById('trad-p1').innerText = l.tradP1;
+    document.getElementById('trad-p2').innerText = l.tradP2;
+    document.getElementById('geo-t').innerText = l.geoT;
+    document.getElementById('cities-main-t').innerText = l.citiesMainT;
+    
+    // Города
+    document.getElementById('tira-t').innerText = l.tiraT; document.getElementById('tira-p').innerText = l.tiraP;
+    document.getElementById('bend-t').innerText = l.bendT; document.getElementById('bend-p').innerText = l.bendP;
+    document.getElementById('slob-t').innerText = l.slobT; document.getElementById('slob-p').innerText = l.slobP;
+    document.getElementById('grig-t').innerText = l.grigT; document.getElementById('grig-p').innerText = l.grigP;
+    document.getElementById('dubo-t').innerText = l.duboT; document.getElementById('dubo-p').innerText = l.duboP;
+    document.getElementById('rybn-t').innerText = l.rybnT; document.getElementById('rybn-p').innerText = l.rybnP;
+    document.getElementById('kame-t').innerText = l.kameT; document.getElementById('kame-p').innerText = l.kameP;
+    document.getElementById('dnes-t').innerText = l.dnesT; document.getElementById('dnes-p').innerText = l.dnesP;
+
+    // ПЕРЕВОД ПОДВАЛА (Footer)
+    document.getElementById('f-desc').innerText = l.fDesc;
+    document.getElementById('f-nav-t').innerText = l.fNavT;
+    document.getElementById('f-n1').innerText = l.fN1;
+    document.getElementById('f-n2').innerText = l.fN2;
+    document.getElementById('f-n3').innerText = l.fN3;
+    document.getElementById('f-con-t').innerText = l.fConT;
+    document.getElementById('f-copy').innerText = l.fCopy;
+    localStorage.setItem('selectedLang', lang);
+}
+document.addEventListener('DOMContentLoaded', () => {
+    // Проверяем, есть ли сохраненный язык в памяти
+    const savedLang = localStorage.getItem('selectedLang');
+    
+    // Если есть — включаем его, если нет — оставляем русский (по умолчанию)
+    if (savedLang) {
+        changeLang(savedLang);
+    } else {
+        changeLang('ru');
+    }
+});
+</script>
+
+</body>
+</html>
