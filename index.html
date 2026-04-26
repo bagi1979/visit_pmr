@@ -538,26 +538,77 @@ footer { background: #121212; color: #fff; padding: 60px 0 20px; border-top: 1px
     .footer-logo p { margin: 0 auto 20px; }
     .social-bar { justify-content: center; flex-wrap: wrap; }
 }
-/* Специально для мобильных экранов (до 480px) */
+/* --- ПОЛНАЯ АДАПТИВНОСТЬ ДЛЯ МОБИЛОК (до 480px) --- */
 @media screen and (max-width: 480px) {
+    
+    /* 1. Навигационная панель (черная полоска сверху) */
+    .nav-bar .container {
+        flex-direction: column; /* Элементы в колонку */
+        padding: 10px 0;
+    }
+
+    /* 2. Кнопки языков и меню */
+    .lang-switch, .nav-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /* Уменьшаем кнопки, чтобы влезли в ряд */
+    .lang-switch a, #nav-advice-btn, #nav-about-btn {
+        margin-left: 0;
+        margin: 2px;
+        padding: 6px 10px;
+        font-size: 0.7rem; /* Чуть меньше шрифт */
+        flex: 1 1 auto; /* Кнопки растягиваются */
+        text-align: center;
+    }
+
+    /* 3. Главный заголовок (Hero) */
     header {
-        display: flex;
-        flex-wrap: wrap; /* Разрешает перенос элементов, если они не влезли */
-        justify-content: center;
-        gap: 10px;
-        padding: 10px;
+        height: 60vh; /* Уменьшаем высоту на мобилках */
+        padding-top: 80px; /* Чтобы не заезжал под навигацию */
     }
 
-    .lang-switcher {
-        display: flex;
-        justify-content: center;
-        width: 100%; /* Занимает всю ширину, чтобы кнопки встали по центру */
-        margin-top: 5px;
+    .hero h1 {
+        font-size: 1.8rem !important; /* Уменьшаем размер "Приднестровье" */
+        padding: 0 10px;
+        line-height: 1.2;
     }
 
-    .lang-switcher button {
-        padding: 5px 8px; /* Немного уменьшаем размер кнопок */
-        font-size: 14px;
+    /* 4. Блок статистики (квадраты с цифрами) */
+    .stats-bar {
+        margin: -20px 15px 0; /* Меньше отступ сверху */
+        padding: 20px 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr; /* Статистика в одну колонку */
+        gap: 15px;
+    }
+
+    /* 5. Карточки шагов и ценностей */
+    .step-grid, .feature-grid {
+        grid-template-columns: 1fr !important; /* Строго по одной в ряд */
+        padding: 0 15px;
+    }
+
+    /* 6. Карта */
+    .map-container {
+        height: 300px; /* Делаем карту ниже на телефоне */
+    }
+
+    /* 7. Блок "С чего начать" */
+    .action-title {
+        font-size: 1.8rem;
+    }
+    
+    /* Убираем лишние отступы всего тела сайта */
+    body {
+        padding-top: 100px; /* Зависит от высоты твоей мобильной навигации */
     }
 }
 </style>

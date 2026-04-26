@@ -66,11 +66,6 @@
         .btn-action.main { color: white; padding: 18px 45px; text-decoration: none; border-radius: 8px; font-weight: 700; display: inline-block; transition: 0.3s; }
         .btn-action.main:hover { opacity: 0.9; transform: translateY(-3px); }
 
-        @media (max-width: 768px) {
-            .hero-advice h1 { font-size: 2.2rem; }
-            .info-section { padding: 25px; }
-            .photo-divider { height: 200px; background-attachment: scroll; }
-        }
         /* ОБНОВЛЕННЫЙ ПОДВАЛ */
 footer { background: #121212; color: #fff; padding: 60px 0 20px; border-top: 1px solid rgba(211, 84, 0, 0.3); margin-top: 80px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
@@ -91,9 +86,87 @@ footer { background: #121212; color: #fff; padding: 60px 0 20px; border-top: 1px
 .btn-wa { color: #25D366 !important; border-color: #25D366 !important; }
 .btn-wa:hover { background: #25D366 !important; color: #fff !important; }
 
+/* ПОЛНАЯ МОБИЛЬНАЯ АДАПТАЦИЯ (для советов путешественникам) */
 @media (max-width: 768px) {
-    .footer-grid { grid-template-columns: 1fr; text-align: center; }
-    .social-bar { justify-content: center; }
+    /* 1. Навигация (Шапка) */
+    .nav-bar .container {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .nav-right {
+        margin-top: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    #nav-home-btn, #nav-about-btn, .lang-switch a {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        margin: 2px;
+    }
+
+    /* 2. Hero секция */
+    .hero-advice {
+        padding: 80px 15px 40px;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .hero-advice h1 {
+        font-size: 1.8rem !important; /* Чтобы длинные советы влезли */
+        line-height: 1.2;
+    }
+
+    /* 3. Адаптация таблицы (самое важное!) */
+    .vignette-table {
+        display: block;
+        overflow-x: auto; /* Появится аккуратная прокрутка внутри таблицы */
+        white-space: nowrap; /* Чтобы текст в ячейках не ломался */
+    }
+
+    /* 4. Карточки SOS и детали */
+    .sos-bar {
+        flex-direction: column; /* Кнопки SOS встают в колонку */
+        gap: 10px;
+    }
+
+    .sos-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .info-section {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+
+    .info-section h2 {
+        font-size: 1.4rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* 5. Картинки-разделители */
+    .photo-divider {
+        height: 180px;
+        background-attachment: scroll; /* Важно для мобилок, чтобы не тормозило */
+        margin: 30px 0;
+    }
+
+    /* 6. Подвал */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .social-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
 }
     </style>
 </head>
@@ -270,7 +343,7 @@ footer { background: #121212; color: #fff; padding: 60px 0 20px; border-top: 1px
         },
         en: {
             navHome: "Home Page",
-            aboutBtn: "About Region",
+            aboutBtn: "About Pridnestrovie",
             heroTitle: "Travel Advice",
             heroSub: "Entry rules, stay requirements, and useful information about Pridnestrovie",
             borderT: "Border Crossing Procedure",
