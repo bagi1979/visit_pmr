@@ -132,13 +132,13 @@
     </section>
 
     <section style="text-align: center; margin: 80px 0;">
-        <h2 id="geo-t">География Приднестровья</h2>
+        <h2 id="geo-t">Карта Приднестровья</h2>
         <img src="tour11.png" alt="Карта Приднестровья" class="map-pmr-img">
     </section>
 
     <div class="city-section">
     <div class="container">
-        <h2 style="text-align: center; margin-bottom: 60px;" id="cities-main-t">Города и поселения</h2>
+        <h2 style="text-align: center; margin-bottom: 60px;" id="cities-main-t">"Города и населенные пункты Приднестровья"</h2>
 
         <div class="city-card">
             <h3 id="tira-t">Город Тирасполь</h3>
@@ -365,6 +365,13 @@
     document.getElementById('f-copy').innerText = l.fCopy;
     localStorage.setItem('selectedLang', lang);
 }
+const titleElement = document.getElementById('about-title'); // убедитесь, что у h1 есть такой id
+    
+    if (lang === 'ru') {
+        titleElement.style.fontSize = '22px'; // Меньше для русского
+    } else {
+        titleElement.style.fontSize = '26px'; // Стандарт для EN и RO
+    }
 document.addEventListener('DOMContentLoaded', () => {
     // Проверяем, есть ли сохраненный язык в памяти
     const savedLang = localStorage.getItem('selectedLang');
